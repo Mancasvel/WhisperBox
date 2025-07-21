@@ -89,7 +89,7 @@ export function RegisterForm({ onSwitchToLogin, onClose }: RegisterFormProps) {
         <div className="w-full space-y-4 sm:space-y-6 pb-4">
           <div className="text-center mb-4 sm:mb-6">
             <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">
-              ¡Únete a Unsent! 💫
+              ¡Únete a WhisperBox! 💚
             </h2>
             <p className="text-sm sm:text-base text-gray-600">
               Create your account to begin your emotional journey

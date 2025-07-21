@@ -40,7 +40,7 @@ export default function GroundingPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
           >
-            <Card className="bg-card/50 backdrop-blur-sm border-emotional-healing-200/30">
+            <Card className="bg-card/50 backdrop-blur-sm border-whisper-green-200/30">
               <CardContent className="p-0">
                 <GroundingExercise />
               </CardContent>

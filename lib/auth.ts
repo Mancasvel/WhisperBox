@@ -97,38 +97,38 @@ export function generateMagicLinkToken(): { token: string; expiresAt: Date } {
 export async function sendMagicLinkEmail(email: string, magicLinkUrl: string): Promise<void> {
   try {
     const mailOptions = {
-      from: process.env.SMTP_FROM || 'noreply@unsent.app',
+      from: process.env.SMTP_FROM || 'noreply@whisperbox.app',
       to: email,
-      subject: 'Your magic link for Unsent',
+      subject: 'Your magic link for WhisperBox',
       html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #000; color: #fff; padding: 20px;">
+        <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff; color: #334155; padding: 20px;">
           <div style="text-align: center; margin-bottom: 30px;">
-            <h1 style="color: #8b5cf6; font-size: 2.5em; margin: 0; text-shadow: 0 0 10px rgba(139, 92, 246, 0.5);">UNSENT</h1>
-            <p style="color: #a855f7; font-size: 1.2em; margin: 10px 0 0 0;">Messages that were never sent</p>
+            <h1 style="color: #16a34a; font-size: 2.5em; margin: 0; font-weight: bold;">WhisperBox</h1>
+            <p style="color: #22c55e; font-size: 1.2em; margin: 10px 0 0 0;">Your Mental Health Companion</p>
           </div>
           
-          <div style="background: rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 10px; padding: 20px; margin: 20px 0;">
-            <p style="color: #d1d5db; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
+          <div style="background: linear-gradient(135deg, #f0fdf4, #fff7ed); border: 1px solid #bbf7d0; border-radius: 15px; padding: 25px; margin: 20px 0;">
+            <p style="color: #475569; font-size: 16px; line-height: 1.6; margin: 0 0 20px 0;">
               Hello,<br><br>
-              You've requested access to your personal space in Unsent. Click the link below to continue:
+              You've requested access to your private emotional wellness space in WhisperBox. Click the link below to continue your journey:
             </p>
             
             <div style="text-align: center; margin: 30px 0;">
               <a href="${magicLinkUrl}" 
-                 style="display: inline-block; padding: 15px 30px; background: linear-gradient(45deg, #8b5cf6, #ec4899); color: white; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 16px; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);">
-                Access Unsent
+                 style="display: inline-block; padding: 15px 30px; background: linear-gradient(45deg, #22c55e, #16a34a); color: white; text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 16px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">
+                Access WhisperBox
               </a>
             </div>
             
-            <p style="color: #9ca3af; font-size: 14px; margin: 20px 0 0 0;">
-              This link will expire in 15 minutes for security.
+            <p style="color: #64748b; font-size: 14px; margin: 20px 0 0 0;">
+              This secure link will expire in 15 minutes for your privacy.
             </p>
           </div>
           
-          <div style="border-top: 1px solid #374151; padding-top: 20px; margin-top: 30px;">
-            <p style="color: #6b7280; font-size: 12px; text-align: center; margin: 0;">
-              🔒 Your messages are encrypted and completely private<br>
-              If you didn't request this link, you can safely ignore this email
+          <div style="border-top: 1px solid #e2e8f0; padding-top: 20px; margin-top: 30px;">
+            <p style="color: #64748b; font-size: 12px; text-align: center; margin: 0;">
+              🔒 Your journal entries are encrypted and completely private<br>
+              💚 If you didn't request this link, you can safely ignore this email
             </p>
           </div>
         </div>

@@ -210,7 +210,7 @@ export default function CrisisPage() {
             className="mb-8"
           >
             <div className="flex items-center space-x-2 mb-4">
-              <Globe className="w-6 h-6 text-emotional-calm-600" />
+              <Globe className="w-6 h-6 text-whisper-green-600" />
               <h3 className="text-xl font-journal font-semibold">Additional Resources</h3>
             </div>
             
@@ -225,13 +225,13 @@ export default function CrisisPage() {
                   <Card className="hover:shadow-md transition-all duration-200">
                     <CardContent className="p-4">
                       <div className="flex items-start space-x-3">
-                        <div className="w-8 h-8 rounded-lg bg-emotional-calm-100 flex items-center justify-center flex-shrink-0">
-                          <Globe className="w-4 h-4 text-emotional-calm-600" />
+                        <div className="w-8 h-8 rounded-lg bg-whisper-green-100 flex items-center justify-center flex-shrink-0">
+                          <Globe className="w-4 h-4 text-whisper-green-600" />
                         </div>
                         <div className="flex-1">
                           <h4 className="font-journal font-semibold mb-1">{resource.name}</h4>
                           <p className="text-sm text-muted-foreground font-ui mb-2">{resource.description}</p>
-                          <div className="text-sm font-medium text-emotional-calm-700">
+                          <div className="text-sm font-medium text-whisper-green-700">
                             {resource.contact}
                           </div>
                         </div>
@@ -252,14 +252,14 @@ export default function CrisisPage() {
             animate="animate"
             className="text-center"
           >
-            <Card className="bg-gradient-to-br from-emotional-calm-50/20 to-emotional-healing-50/20 border-emotional-calm-200/30">
+            <Card className="bg-gradient-to-br from-whisper-green-50/20 to-whisper-orange-50/20 border-whisper-green-200/30">
               <CardContent className="p-6">
                 <motion.div
                   animate={{ scale: [1, 1.1, 1] }}
                   transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                   className="flex justify-center mb-4"
                 >
-                  <Heart className="w-12 h-12 text-emotional-healing-500" />
+                  <Heart className="w-12 h-12 text-whisper-green-500" />
                 </motion.div>
                 <h3 className="text-xl font-journal font-semibold mb-4">Remember</h3>
                 <div className="space-y-2 font-ui text-muted-foreground">
@@ -270,7 +270,7 @@ export default function CrisisPage() {
                   <p>• There are people who want to help</p>
                 </div>
                 <div className="mt-6 flex items-center justify-center space-x-2">
-                  <Shield className="w-5 h-5 text-emotional-calm-600" />
+                  <Shield className="w-5 h-5 text-whisper-green-600" />
                   <span className="text-sm font-medium font-ui">Your safety and wellbeing matter</span>
                 </div>
               </CardContent>

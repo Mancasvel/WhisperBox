@@ -39,8 +39,8 @@ export default function DashboardPage() {
       icon: <Edit3 className="w-6 h-6" />,
       title: 'Emotional Journaling',
       description: 'Express your thoughts and feelings in a safe, private space',
-      gradient: 'from-emotional-calm-500 to-emotional-healing-500',
-      bgColor: 'bg-emotional-calm-50/10',
+      gradient: 'from-whisper-green-500 to-whisper-green-600',
+      bgColor: 'bg-whisper-green-50/10',
       stats: 'Start writing today'
     },
     {
@@ -49,8 +49,8 @@ export default function DashboardPage() {
       icon: <Wind className="w-6 h-6" />,
       title: 'Breathing Exercises',
       description: 'Guided techniques to reduce anxiety and promote calm',
-      gradient: 'from-emotional-warm-500 to-emotional-calm-500',
-      bgColor: 'bg-emotional-warm-50/10',
+      gradient: 'from-whisper-orange-500 to-whisper-green-500',
+      bgColor: 'bg-whisper-orange-50/10',
       stats: '4-7-8 technique'
     },
     {
@@ -59,8 +59,8 @@ export default function DashboardPage() {
       title: 'Grounding Exercises',
       icon: <Brain className="w-6 h-6" />,
       description: '5-4-3-2-1 technique to help you feel present',
-      gradient: 'from-emotional-healing-500 to-emotional-warm-500',
-      bgColor: 'bg-emotional-healing-50/10',
+      gradient: 'from-whisper-green-600 to-whisper-orange-500',
+      bgColor: 'bg-whisper-green-50/10',
       stats: 'Find your center'
     },
     {
@@ -81,19 +81,19 @@ export default function DashboardPage() {
       value: `${(user?.aiChatsLimit || 10) - (user?.aiChatsUsed || 0)}`,
       total: user?.aiChatsLimit || 10,
       icon: <Sparkles className="w-5 h-5" />,
-      color: 'text-emotional-calm-600'
+      color: 'text-whisper-green-600'
     },
     {
       label: 'Days Active',
       value: '1',
       icon: <TrendingUp className="w-5 h-5" />,
-      color: 'text-emotional-healing-600'
+      color: 'text-whisper-green-600'
     },
     {
       label: 'Safe Space',
       value: '100%',
       icon: <Shield className="w-5 h-5" />,
-      color: 'text-emotional-warm-600'
+      color: 'text-whisper-orange-600'
     }
   ]
 
@@ -130,14 +130,14 @@ export default function DashboardPage() {
             animate="animate"
             className="mb-8"
           >
-            <Card className="bg-gradient-to-br from-emotional-calm-500/10 to-emotional-healing-500/10 border-emotional-calm-200/30">
+            <Card className="bg-gradient-to-br from-whisper-green-500/10 to-whisper-green-600/10 border-whisper-green-200/30">
               <CardContent className="p-6">
                 <div className="flex items-center space-x-4">
                   <motion.div
                     animate={{ scale: [1, 1.1, 1] }}
                     transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                   >
-                    <Heart className="w-12 h-12 text-emotional-calm-500" />
+                    <Heart className="w-12 h-12 text-whisper-green-500" />
                   </motion.div>
                   <div>
                     <h1 className="text-2xl font-journal font-semibold mb-2">
@@ -200,7 +200,7 @@ export default function DashboardPage() {
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
                 <Card 
-                  className={`cursor-pointer border-border/50 hover:border-emotional-calm-300/50 transition-all duration-300 overflow-hidden h-full ${feature.bgColor}`}
+                                     className={`cursor-pointer border-border/50 hover:border-whisper-green-300/50 transition-all duration-300 overflow-hidden h-full ${feature.bgColor}`}
                   onClick={() => router.push(feature.path)}
                 >
                   <CardHeader className="pb-4">
@@ -257,7 +257,7 @@ export default function DashboardPage() {
                   </Button>
                   <Button
                     onClick={() => router.push('/breathing')}
-                    className="bg-gradient-to-r from-emotional-calm-500 to-emotional-healing-500 hover:from-emotional-calm-600 hover:to-emotional-healing-600 font-ui"
+                    className="bg-gradient-to-r from-whisper-green-500 to-whisper-green-600 hover:from-whisper-green-600 hover:to-whisper-green-700 font-ui"
                   >
                     <Wind className="w-4 h-4 mr-2" />
                     Quick Calm

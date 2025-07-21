@@ -5,22 +5,27 @@
 
 /* WhisperBox Mental Health Design System */
 :root {
-  /* Calming Color Palette */
-  --whisper-blue-50: #f0f9ff;
-  --whisper-blue-100: #e0f2fe;
-  --whisper-blue-500: #0ea5e9;
-  --whisper-blue-600: #0284c7;
-  --whisper-blue-700: #0369a1;
-  
-  --whisper-purple-50: #faf5ff;
-  --whisper-purple-100: #f3e8ff;
-  --whisper-purple-500: #a855f7;
-  --whisper-purple-600: #9333ea;
-  
+  /* WhisperBox Brand Color Palette */
   --whisper-green-50: #f0fdf4;
   --whisper-green-100: #dcfce7;
+  --whisper-green-200: #bbf7d0;
+  --whisper-green-300: #86efac;
+  --whisper-green-400: #4ade80;
   --whisper-green-500: #22c55e;
   --whisper-green-600: #16a34a;
+  --whisper-green-700: #15803d;
+  --whisper-green-800: #166534;
+  
+  --whisper-orange-50: #fff7ed;
+  --whisper-orange-100: #ffedd5;
+  --whisper-orange-200: #fed7aa;
+  --whisper-orange-300: #fdba74;
+  --whisper-orange-400: #fb923c;
+  --whisper-orange-500: #f97316;
+  --whisper-orange-600: #ea580c;
+  
+  --whisper-dark-50: #f8fafc;
+  --whisper-dark-100: #f1f5f9;
   
   --whisper-gray-50: #f9fafb;
   --whisper-gray-100: #f3f4f6;
@@ -186,13 +191,13 @@ body {
 }
 
 .whisper-button-primary {
-  background: linear-gradient(135deg, var(--whisper-blue-500) 0%, var(--whisper-purple-500) 100%);
+  background: linear-gradient(135deg, var(--whisper-green-500) 0%, var(--whisper-green-600) 100%);
   color: white;
 }
 
 .whisper-button-primary:hover:not(:disabled) {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
 }
 
 .whisper-button-secondary {
@@ -226,8 +231,8 @@ body {
 }
 
 .whisper-input:focus {
-  border-color: var(--whisper-blue-500);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  border-color: var(--whisper-green-500);
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
 }
 
 .whisper-textarea {
@@ -245,8 +250,8 @@ body {
 }
 
 .whisper-textarea:focus {
-  border-color: var(--whisper-blue-500);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  border-color: var(--whisper-green-500);
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
   outline: none;
 }
 
@@ -311,35 +316,35 @@ body {
 }
 
 .mood-option:hover {
-  border-color: var(--whisper-blue-500);
+  border-color: var(--whisper-green-500);
   transform: translateY(-1px);
 }
 
 .mood-option.selected {
-  border-color: var(--whisper-blue-500);
-  background: var(--whisper-blue-50);
+  border-color: var(--whisper-green-500);
+  background: var(--whisper-green-50);
 }
 
 .journal-prompt {
-  background: var(--whisper-blue-50);
-  border: 1px solid var(--whisper-blue-100);
+  background: var(--whisper-green-50);
+  border: 1px solid var(--whisper-green-100);
   padding: var(--whisper-space-sm) var(--whisper-space-md);
   border-radius: var(--whisper-radius-2xl);
   font-size: var(--whisper-text-xs);
-  color: var(--whisper-blue-700);
+  color: var(--whisper-green-700);
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
 }
 
 .journal-prompt:hover {
-  background: var(--whisper-blue-100);
+  background: var(--whisper-green-100);
   transform: translateY(-1px);
 }
 
 .ai-response {
-  background: linear-gradient(135deg, var(--whisper-blue-50) 0%, var(--whisper-purple-50) 100%);
-  border: 1px solid var(--whisper-blue-100);
+  background: linear-gradient(135deg, var(--whisper-green-50) 0%, var(--whisper-orange-50) 100%);
+  border: 1px solid var(--whisper-green-100);
   border-radius: var(--whisper-radius-xl);
   padding: var(--whisper-space-xl);
   animation: gentle-fade-in 0.6s ease-out;
@@ -376,14 +381,14 @@ body {
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, var(--whisper-blue-600) 0%, var(--whisper-purple-600) 100%);
+  background: linear-gradient(135deg, var(--whisper-green-600) 0%, var(--whisper-green-700) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .gradient-bg {
-  background: linear-gradient(135deg, var(--whisper-blue-500) 0%, var(--whisper-purple-500) 100%);
+  background: linear-gradient(135deg, var(--whisper-green-500) 0%, var(--whisper-green-600) 100%);
   background-size: 200% 200%;
   animation: gradient-shift 3s ease infinite;
 }
@@ -517,7 +522,7 @@ body {
   
   /* Enhanced focus states for accessibility */
   *:focus-visible {
-    @apply outline-none ring-2 ring-emotional-calm-400 ring-offset-2 ring-offset-background;
+    @apply outline-none ring-2 ring-whisper-green-400 ring-offset-2 ring-offset-background;
   }
 }
 
@@ -533,7 +538,7 @@ body {
   .journal-editor {
     @apply w-full min-h-[400px] p-8 bg-card/50 backdrop-blur-sm border border-border rounded-2xl;
     @apply font-journal text-lg leading-relaxed;
-    @apply focus:outline-none focus:ring-2 focus:ring-emotional-calm-400/50 focus:border-transparent;
+    @apply focus:outline-none focus:ring-2 focus:ring-whisper-green-400/50 focus:border-transparent;
     @apply resize-none transition-all duration-300;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   }
@@ -545,10 +550,10 @@ body {
   
   /* AI Response Container */
   .ai-reflection {
-    @apply relative p-6 bg-gradient-to-br from-emotional-calm-50/10 to-emotional-healing-50/10;
-    @apply border border-emotional-calm-200/20 rounded-2xl backdrop-blur-sm;
+    @apply relative p-6 bg-gradient-to-br from-whisper-green-50/10 to-whisper-orange-50/10;
+    @apply border border-whisper-green-200/20 rounded-2xl backdrop-blur-sm;
     @apply before:absolute before:inset-0 before:rounded-2xl before:p-[1px];
-    @apply before:bg-gradient-to-br before:from-emotional-calm-200/20 before:to-emotional-healing-200/20;
+    @apply before:bg-gradient-to-br before:from-whisper-green-200/20 before:to-whisper-orange-200/20;
     @apply before:-z-10 before:content-[''];
   }
   
@@ -559,21 +564,21 @@ body {
   }
   
   .emotion-badge.calm {
-    @apply from-emotional-calm-100 to-emotional-calm-200 text-emotional-calm-800;
+    @apply from-whisper-green-100 to-whisper-green-200 text-whisper-green-800;
   }
   
   .emotion-badge.warm {
-    @apply from-emotional-warm-100 to-emotional-warm-200 text-emotional-warm-800;
+    @apply from-whisper-orange-100 to-whisper-orange-200 text-whisper-orange-600;
   }
   
   .emotion-badge.healing {
-    @apply from-emotional-healing-100 to-emotional-healing-200 text-emotional-healing-800;
+    @apply from-whisper-green-100 to-whisper-green-200 text-whisper-green-800;
   }
   
   /* Breathing Circle Animation */
   .breathing-circle {
     @apply w-32 h-32 rounded-full flex items-center justify-center;
-    @apply bg-gradient-to-br from-emotional-calm-400 to-emotional-healing-400;
+    @apply bg-gradient-to-br from-whisper-green-400 to-whisper-green-600;
     @apply text-white font-bold text-xl shadow-2xl;
     animation: breathe-gently 4s ease-in-out infinite;
   }
@@ -606,12 +611,12 @@ body {
   }
   
   .self-care-card::before {
-    @apply absolute inset-0 bg-gradient-to-br from-emotional-calm-50/0 to-emotional-healing-50/0;
+    @apply absolute inset-0 bg-gradient-to-br from-whisper-green-50/0 to-whisper-orange-50/0;
     @apply transition-all duration-300 content-[''];
   }
   
   .group:hover .self-care-card::before {
-    @apply from-emotional-calm-50/20 to-emotional-healing-50/20;
+    @apply from-whisper-green-50/20 to-whisper-orange-50/20;
   }
   
   /* Markdown Content Styling */
@@ -619,7 +624,7 @@ body {
     @apply prose prose-stone dark:prose-invert max-w-none;
     @apply prose-headings:font-journal prose-headings:font-semibold;
     @apply prose-p:font-journal prose-p:text-lg prose-p:leading-relaxed;
-    @apply prose-blockquote:border-emotional-calm-300 prose-blockquote:italic;
+    @apply prose-blockquote:border-whisper-green-300 prose-blockquote:italic;
     @apply prose-strong:text-foreground prose-em:text-muted-foreground;
   }
   

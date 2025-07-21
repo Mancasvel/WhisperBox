@@ -1,7 +1,7 @@
 {
-  "name": "Unsent - Mensajes que nunca se enviaron",
-  "short_name": "Unsent",
-  "description": "Un espacio seguro para escribir lo que nunca pudiste decir. Procesa tus emociones y encuentra la paz.",
+  "name": "WhisperBox - Your Mental Health Companion",
+  "short_name": "WhisperBox",
+  "description": "A secure, private space for emotional journaling with AI-powered insights and compassionate mental health support.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",

@@ -16,7 +16,7 @@ export default function LoginPage() {
 
   // Redirect if already authenticated
   if (isAuthenticated) {
-    router.push('/')
+    router.push('/dashboard')
     return null
   }
 
@@ -46,15 +46,15 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-purple-900/20 to-black relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-white via-whisper-green-50 to-whisper-green-100 relative overflow-hidden">
       {/* Background effects */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/20 via-transparent to-transparent"></div>
-      <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(139,92,246,0.1)_50%,transparent_75%)] bg-[length:20px_20px] animate-pulse"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-whisper-green-200/30 via-transparent to-transparent"></div>
+      <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(34,197,94,0.1)_50%,transparent_75%)] bg-[length:20px_20px] animate-pulse"></div>
       
-      {/* Floating neon lights */}
-      <div className="absolute top-20 left-20 w-2 h-2 bg-cyan-400 rounded-full blur-sm animate-pulse"></div>
-      <div className="absolute top-40 right-32 w-1 h-1 bg-pink-400 rounded-full blur-sm animate-pulse delay-1000"></div>
-      <div className="absolute bottom-32 left-16 w-3 h-3 bg-purple-400 rounded-full blur-sm animate-pulse delay-2000"></div>
+      {/* Floating gentle lights */}
+      <div className="absolute top-20 left-20 w-2 h-2 bg-whisper-green-400 rounded-full blur-sm animate-pulse"></div>
+      <div className="absolute top-40 right-32 w-1 h-1 bg-whisper-orange-400 rounded-full blur-sm animate-pulse delay-1000"></div>
+      <div className="absolute bottom-32 left-16 w-3 h-3 bg-whisper-green-300 rounded-full blur-sm animate-pulse delay-2000"></div>
 
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4">
         <motion.div
@@ -70,17 +70,17 @@ export default function LoginPage() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1.2, delay: 0.3 }}
-                className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent cursor-pointer"
+                className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-whisper-green-600 via-whisper-green-500 to-whisper-orange-500 bg-clip-text text-transparent cursor-pointer"
                 style={{
-                  textShadow: "0 0 20px rgba(139, 92, 246, 0.5), 0 0 40px rgba(139, 92, 246, 0.3)",
-                  filter: "drop-shadow(0 0 10px rgba(139, 92, 246, 0.8))"
+                  textShadow: "0 0 20px rgba(34, 197, 94, 0.3), 0 0 40px rgba(34, 197, 94, 0.2)",
+                  filter: "drop-shadow(0 0 8px rgba(34, 197, 94, 0.4))"
                 }}
               >
-                UNSENT
+                WhisperBox
               </motion.h1>
             </Link>
-            <p className="text-gray-300 text-lg">
-              Enter your email to begin
+            <p className="text-whisper-dark-600 text-lg font-journal">
+              Your safe space for emotional wellbeing
             </p>
           </div>
 
@@ -89,12 +89,12 @@ export default function LoginPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.6 }}
-            className="bg-black/40 backdrop-blur-sm border border-purple-500/30 rounded-lg p-8"
+            className="bg-white/80 backdrop-blur-sm border border-whisper-green-200 rounded-xl p-8 shadow-lg"
           >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-                  Email
+                <label htmlFor="email" className="block text-sm font-medium text-whisper-dark-700 mb-2 font-ui">
+                  Email Address
                 </label>
                 <input
                   type="email"
@@ -103,25 +103,25 @@ export default function LoginPage() {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   placeholder="your@email.com"
-                  className="w-full px-4 py-3 bg-black/60 border border-purple-500/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/25 transition-all duration-300"
+                  className="w-full px-4 py-3 bg-white border border-whisper-green-200 rounded-lg text-whisper-dark-800 placeholder-whisper-dark-400 focus:outline-none focus:border-whisper-green-500 focus:ring-2 focus:ring-whisper-green-200 transition-all duration-300 font-ui"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 disabled:from-gray-600 disabled:to-gray-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 disabled:scale-100 shadow-lg hover:shadow-purple-500/25"
+                className="w-full px-6 py-3 bg-gradient-to-r from-whisper-green-500 to-whisper-green-600 hover:from-whisper-green-600 hover:to-whisper-green-700 disabled:from-whisper-dark-400 disabled:to-whisper-dark-500 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 disabled:scale-100 shadow-lg hover:shadow-whisper-green-300/30 font-ui"
                 style={{
-                  boxShadow: "0 0 20px rgba(139, 92, 246, 0.3)"
+                  boxShadow: "0 0 20px rgba(34, 197, 94, 0.2)"
                 }}
               >
                 {loading ? (
                   <div className="flex items-center justify-center">
                     <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                    Sending...
+                    Sending Magic Link...
                   </div>
                 ) : (
-                  'Send magic link'
+                  'Send Magic Link'
                 )}
               </button>
             </form>
@@ -132,10 +132,10 @@ export default function LoginPage() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
-                className={`mt-4 p-4 rounded-lg text-sm ${
+                className={`mt-4 p-4 rounded-lg text-sm font-ui ${
                   messageType === 'success' 
-                    ? 'bg-green-500/20 border border-green-500/30 text-green-300' 
-                    : 'bg-red-500/20 border border-red-500/30 text-red-300'
+                    ? 'bg-whisper-green-50 border border-whisper-green-200 text-whisper-green-700' 
+                    : 'bg-red-50 border border-red-200 text-red-700'
                 }`}
               >
                 {message}
@@ -144,38 +144,38 @@ export default function LoginPage() {
 
             {/* Additional information */}
             <div className="mt-6 text-center">
-              <p className="text-xs text-gray-400 leading-relaxed">
-                We'll send you a magic link to your email.<br />
-                No password needed, just click the link.
+              <p className="text-xs text-whisper-dark-500 leading-relaxed font-ui">
+                We'll send you a secure magic link to your email.<br />
+                No password needed, just click the link to access your space.
               </p>
             </div>
           </motion.div>
 
-          {/* Encryption information */}
+          {/* Privacy information */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1.2 }}
             className="mt-8 text-center"
           >
-            <div className="bg-black/20 backdrop-blur-sm border border-yellow-500/30 rounded-lg p-4">
-              <h3 className="text-yellow-300 font-semibold mb-2">🔒 Total Privacy</h3>
-              <p className="text-xs text-gray-400 leading-relaxed">
-                All your messages are encrypted locally with a unique key. 
-                No one else can read what you write, not even us.
+            <div className="bg-whisper-orange-50 backdrop-blur-sm border border-whisper-orange-200 rounded-xl p-4">
+              <h3 className="text-whisper-orange-700 font-semibold mb-2 font-journal">🔒 Complete Privacy</h3>
+              <p className="text-xs text-whisper-dark-600 leading-relaxed font-ui">
+                Your journal entries are encrypted and completely private. 
+                Only you can access your thoughts and emotional reflections.
               </p>
             </div>
           </motion.div>
 
-          {/* Mysterious fragment */}
+          {/* Inspirational quote */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 1.5 }}
-            className="mt-8 p-4 border border-purple-500/20 bg-black/20 backdrop-blur-sm rounded-lg text-center"
+            className="mt-8 p-4 border border-whisper-green-200 bg-whisper-green-50 backdrop-blur-sm rounded-xl text-center"
           >
-            <p className="text-purple-300 italic text-sm">
-              "Every unsent message is a pending conversation with yourself..."
+            <p className="text-whisper-green-700 italic text-sm font-journal">
+              "Every moment of self-reflection is a step toward healing and growth..."
             </p>
           </motion.div>
         </motion.div>

@@ -13,11 +13,11 @@ export function Footer() {
               <div className="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center">
                 <span className="text-white text-lg font-bold">💌</span>
               </div>
-              <span className="text-2xl font-bold text-white">Unsent</span>
+              <span className="text-2xl font-bold text-white">WhisperBox</span>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed">
-              An augmented reality game with yourself. Process emotions through writing 
-              unsent messages. Journey through 5 stages toward forgiveness and release.
+              Your private mental health companion. Process emotions through secure journaling 
+              with AI insights. Journey toward emotional wellbeing and healing.
             </p>
             <div className="flex gap-4 text-sm">
               <span className="text-slate-400">💭 Process</span>
@@ -132,7 +132,7 @@ export function Footer() {
           </div>
           
           <div className="text-sm text-slate-500 text-center lg:text-right">
-            <p>© 2024 Unsent. All rights reserved.</p>
+            <p>© 2024 WhisperBox. All rights reserved.</p>
             <p className="text-xs mt-1">Made with ❤️ for emotional healing</p>
           </div>
         </div>

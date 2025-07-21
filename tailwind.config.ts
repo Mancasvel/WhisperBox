@@ -61,45 +61,45 @@ const config: Config = {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			},
-  			// Emotional journaling color palette
-  			emotional: {
-  				calm: {
-  					50: '#f0f9ff',
-  					100: '#e0f2fe',
-  					200: '#bae6fd',
-  					300: '#7dd3fc',
-  					400: '#38bdf8',
-  					500: '#0ea5e9',
-  					600: '#0284c7',
-  					700: '#0369a1',
-  					800: '#075985',
-  					900: '#0c4a6e',
-  				},
-  				warm: {
-  					50: '#fef7ed',
-  					100: '#fdedd3',
-  					200: '#fed7aa',
-  					300: '#fdba74',
-  					400: '#fb923c',
-  					500: '#f97316',
-  					600: '#ea580c',
-  					700: '#c2410c',
-  					800: '#9a3412',
-  					900: '#7c2d12',
-  				},
-  				healing: {
-  					50: '#f0fdf4',
-  					100: '#dcfce7',
-  					200: '#bbf7d0',
-  					300: '#86efac',
-  					400: '#4ade80',
-  					500: '#22c55e',
-  					600: '#16a34a',
-  					700: '#15803d',
-  					800: '#166534',
-  					900: '#14532d',
-  				}
-  			}
+  			      // WhisperBox branding color palette
+      whisper: {
+        green: {
+          50: '#f0fdf4',
+          100: '#dcfce7',
+          200: '#bbf7d0',
+          300: '#86efac',
+          400: '#4ade80',
+          500: '#22c55e',
+          600: '#16a34a',
+          700: '#15803d',
+          800: '#166534',
+          900: '#14532d',
+        },
+        orange: {
+          50: '#fff7ed',
+          100: '#ffedd5',
+          200: '#fed7aa',
+          300: '#fdba74',
+          400: '#fb923c',
+          500: '#f97316',
+          600: '#ea580c',
+          700: '#c2410c',
+          800: '#9a3412',
+          900: '#7c2d12',
+        },
+        dark: {
+          50: '#f8fafc',
+          100: '#f1f5f9',
+          200: '#e2e8f0',
+          300: '#cbd5e1',
+          400: '#94a3b8',
+          500: '#64748b',
+          600: '#475569',
+          700: '#334155',
+          800: '#1e293b',
+          900: '#0f172a',
+        }
+      }
   		},
   		animation: {
   			'fade-in': 'fadeIn 0.5s ease-in-out',
@@ -133,36 +133,36 @@ const config: Config = {
   		backdropBlur: {
   			xs: '2px',
   		},
-  		typography: (theme: any) => ({
-  			journal: {
-  				css: {
-  					'--tw-prose-body': theme('colors.stone.200'),
-  					'--tw-prose-headings': theme('colors.stone.100'),
-  					'--tw-prose-links': theme('colors.emotional.calm.400'),
-  					'--tw-prose-bold': theme('colors.stone.100'),
-  					'--tw-prose-code': theme('colors.stone.300'),
-  					'--tw-prose-pre-code': theme('colors.stone.200'),
-  					'--tw-prose-pre-bg': theme('colors.stone.900'),
-  					'--tw-prose-quotes': theme('colors.stone.300'),
-  					fontFamily: theme('fontFamily.journal'),
-  					fontSize: '1.1rem',
-  					lineHeight: '1.8',
-  					p: {
-  						marginTop: '1.25em',
-  						marginBottom: '1.25em',
-  					},
-  				},
-  			},
-  			ai: {
-  				css: {
-  					'--tw-prose-body': theme('colors.stone.300'),
-  					'--tw-prose-headings': theme('colors.stone.200'),
-  					fontFamily: theme('fontFamily.ui'),
-  					fontSize: '0.95rem',
-  					lineHeight: '1.6',
-  				},
-  			},
-  		}),
+  				typography: (theme: any) => ({
+			journal: {
+				css: {
+					'--tw-prose-body': theme('colors.stone.200'),
+					'--tw-prose-headings': theme('colors.whisper.green.400'),
+					'--tw-prose-links': theme('colors.whisper.green.500'),
+					'--tw-prose-bold': theme('colors.whisper.green.300'),
+					'--tw-prose-code': theme('colors.stone.300'),
+					'--tw-prose-pre-code': theme('colors.stone.200'),
+					'--tw-prose-pre-bg': theme('colors.whisper.dark.900'),
+					'--tw-prose-quotes': theme('colors.whisper.green.300'),
+					fontFamily: theme('fontFamily.journal'),
+					fontSize: '1.1rem',
+					lineHeight: '1.8',
+					p: {
+						marginTop: '1.25em',
+						marginBottom: '1.25em',
+					},
+				},
+			},
+			ai: {
+				css: {
+					'--tw-prose-body': theme('colors.stone.300'),
+					'--tw-prose-headings': theme('colors.whisper.green.400'),
+					fontFamily: theme('fontFamily.ui'),
+					fontSize: '0.95rem',
+					lineHeight: '1.6',
+				},
+			},
+		}),
   	}
   },
   darkMode: ["class", 'class'],

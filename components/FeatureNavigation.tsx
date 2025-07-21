@@ -84,11 +84,11 @@ export default function FeatureNavigation({
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <div className="w-10 h-10 bg-gradient-to-br from-emotional-calm-500 to-emotional-healing-500 rounded-xl flex items-center justify-center text-white text-lg font-bold shadow-lg">
+              <div className="w-10 h-10 bg-gradient-to-br from-whisper-green-500 to-whisper-green-600 rounded-xl flex items-center justify-center text-white text-lg font-bold shadow-lg">
                 W
               </div>
               <div>
-                <h1 className="text-xl font-journal font-semibold bg-gradient-to-r from-emotional-calm-600 to-emotional-healing-600 bg-clip-text text-transparent">
+                <h1 className="text-xl font-journal font-semibold bg-gradient-to-r from-whisper-green-600 to-whisper-green-700 bg-clip-text text-transparent">
                   WhisperBox
                 </h1>
               </div>
@@ -142,7 +142,7 @@ export default function FeatureNavigation({
                       onClick={() => router.push(item.path)}
                       className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                         isActive
-                          ? 'bg-gradient-to-r from-emotional-calm-500 to-emotional-healing-500 text-white shadow-md'
+                          ? 'bg-gradient-to-r from-whisper-green-500 to-whisper-green-600 text-white shadow-md'
                           : 'text-muted-foreground hover:text-foreground hover:bg-background/50'
                       }`}
                       whileHover={{ scale: isActive ? 1 : 1.05 }}
