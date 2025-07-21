@@ -346,10 +346,17 @@ export interface EmotionalInsight {
   primaryEmotion: EmotionalTone
   intensity: number // 1-10
   underlyingThemes: string[]
-  emotionalProgress: 'stagnant' | 'processing' | 'breakthrough' | 'integration'
-  recommendedActions: SelfCareAction[]
+  emotionalProgress: 'processing' | 'improving' | 'stable' | 'declining'
+  recommendedActions: Array<{
+    id: string
+    category: string
+    title: string
+    description: string
+    duration: string
+    difficulty: string
+  }>
   crisisLevel: number // 0-10 (0 = stable, 10 = immediate crisis)
-  supportNeeded: 'low' | 'medium' | 'high' | 'crisis'
+  supportNeeded: 'low' | 'moderate' | 'high' | 'crisis'
 }
 
 export interface SelfCareAction {
@@ -378,12 +385,25 @@ export interface WhisperBoxResponse {
     validation: string
     insights: string
     encouragement: string
-    selfCareActions: SelfCareAction[]
+    selfCareActions: Array<{
+      id: string
+      category: string
+      title: string
+      description: string
+      duration: string
+      difficulty: string
+    }>
   }
   mentalHealthMetrics: {
     crisisLevel: number
-    supportNeeded: 'low' | 'medium' | 'high' | 'crisis'
-    recommendedResources: CrisisResource[]
+    supportNeeded: 'low' | 'moderate' | 'high' | 'crisis'
+    recommendedResources: Array<{
+      name: string
+      type: string
+      contact: string
+      description: string
+      availability: string
+    }>
   }
   mysteriousFragment?: string // Keep some of the original contemplative elements
 } 

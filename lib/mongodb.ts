@@ -5,7 +5,7 @@ declare global {
   var _mongoClientPromise: Promise<MongoClient> | undefined
 }
 
-const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/unsent' 
+const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/whisperbox' 
 
 const options: MongoClientOptions = {
   tlsAllowInvalidCertificates: true,
@@ -51,17 +51,20 @@ export async function getMongoClient(): Promise<MongoClient> {
 }
 
 /**
- * Obtiene la base de datos Unsent con reconexión automática
+ * Obtiene la base de datos WhisperBox con reconexión automática
  */
-export async function getUnsentDB() {
+export async function getWhisperBoxDB() {
   const client = await getMongoClient()
-  return client.db('Unsent')
+  return client.db('WhisperBox')
 }
+
+// Alias for compatibility
+export const getUnsentDB = getWhisperBoxDB
 
 /**
  * Ejecuta una operación con manejo automático de errores de conexión
  */
-export async function withUnsentDB<T>(
+export async function withWhisperBoxDB<T>(
   operation: (db: any) => Promise<T>,
   retries: number = 3
 ): Promise<T> {
@@ -69,7 +72,7 @@ export async function withUnsentDB<T>(
 
   for (let i = 0; i < retries; i++) {
     try {
-      const db = await getUnsentDB()
+      const db = await getWhisperBoxDB()
       return await operation(db)
     } catch (error: any) {
       lastError = error
@@ -91,7 +94,10 @@ export async function withUnsentDB<T>(
   throw lastError!
 }
 
+// Alias for compatibility
+export const withUnsentDB = withWhisperBoxDB
+
 export default clientPromise
 
-// Alias for backward compatibility
-export const withPawsitiveDB = withUnsentDB 
+// Aliases for backward compatibility
+export const withPawsitiveDB = withWhisperBoxDB 

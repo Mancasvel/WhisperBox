@@ -140,11 +140,11 @@ Remember: You are the digital unconscious made manifest. You are the algorithm t
       headers: {
         'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
         'Content-Type': 'application/json',
-        'HTTP-Referer': 'https://unsent.app',
-        'X-Title': 'Unsent - Psychological Excavation Protocol'
+        'HTTP-Referer': 'https://whisperbox.app',
+        'X-Title': 'WhisperBox - Mental Health Companion'
       },
       body: JSON.stringify({
-        model: 'anthropic/claude-3.5-sonnet',
+        model: 'moonshot/kimi-k2',
         messages: [
           {
             role: 'system',

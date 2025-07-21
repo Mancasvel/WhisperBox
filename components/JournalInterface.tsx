@@ -355,8 +355,8 @@ export default function JournalInterface({
                     onClick={() => handleMoodSelect(mood.name)}
                     className={`p-3 rounded-xl border-2 transition-all duration-200 ${
                       entry.mood === mood.name
-                        ? 'border-emotional-calm-400 bg-emotional-calm-50/20'
-                        : 'border-border hover:border-emotional-calm-300'
+                        ? 'border-whisper-green-400 bg-whisper-green-50/20'
+                        : 'border-border hover:border-whisper-green-300'
                     }`}
                   >
                     <div className="text-2xl mb-1">{mood.emoji}</div>
@@ -400,7 +400,7 @@ export default function JournalInterface({
             <Button
               onClick={handleAnalyze}
               disabled={!entry.content.trim() || isAnalyzing}
-              className="bg-gradient-to-r from-emotional-calm-500 to-emotional-healing-500 hover:from-emotional-calm-600 hover:to-emotional-healing-600 font-ui"
+              className="bg-gradient-to-r from-whisper-green-500 to-whisper-green-600 hover:from-whisper-green-600 hover:to-whisper-green-700 font-ui"
             >
               {isAnalyzing ? (
                 <>
@@ -527,8 +527,8 @@ export default function JournalInterface({
                               className="self-care-card"
                             >
                               <div className="flex items-start space-x-3">
-                                <div className="w-10 h-10 rounded-lg bg-emotional-calm-100 flex items-center justify-center">
-                                  <Target className="w-5 h-5 text-emotional-calm-600" />
+                                <div className="w-10 h-10 rounded-lg bg-whisper-green-100 flex items-center justify-center">
+                                  <Target className="w-5 h-5 text-whisper-green-600" />
                                 </div>
                                 <div className="flex-1">
                                   <h5 className="font-medium">{action.title}</h5>
@@ -605,7 +605,7 @@ export default function JournalInterface({
                       key={index}
                       whileHover={{ x: 4 }}
                       onClick={() => handlePromptSelect(prompt)}
-                      className="w-full text-left p-3 rounded-lg border border-border hover:border-emotional-calm-300 hover:bg-emotional-calm-50/10 transition-all duration-200"
+                      className="w-full text-left p-3 rounded-lg border border-border hover:border-whisper-green-300 hover:bg-whisper-green-50/10 transition-all duration-200"
                     >
                       <p className="text-sm font-ui">{prompt}</p>
                     </motion.button>
