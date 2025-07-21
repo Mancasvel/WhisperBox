@@ -26,6 +26,7 @@ interface JournalEntry {
   tags: string[]
   emotionalScore: number
   createdAt: Date
+  aiAnalysis?: any
 }
 
 export default function JournalPage() {
@@ -61,7 +62,8 @@ export default function JournalPage() {
           mood: entry.mood,
           tags: entry.tags,
           journalType: 'daily',
-          isPrivate: true
+          isPrivate: true,
+          aiAnalysis: entry.aiAnalysis
         }),
       })
 

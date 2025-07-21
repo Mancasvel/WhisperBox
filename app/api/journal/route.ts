@@ -112,7 +112,8 @@ export async function POST(request: NextRequest) {
       mood, 
       title,
       tags = [],
-      isPrivate = true 
+      isPrivate = true,
+      aiAnalysis = null
     } = body
 
     if (!content?.trim()) {
@@ -122,13 +123,15 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Generate AI analysis
-    let aiAnalysis: WhisperBoxResponse | null = null
-    try {
-      aiAnalysis = await analyzeJournalEntry(content)
-    } catch (aiError) {
-      console.error('AI analysis failed:', aiError)
-      // Continue without AI analysis - user experience shouldn't suffer
+    // Use provided AI analysis or generate new one if not provided
+    let finalAiAnalysis: WhisperBoxResponse | null = aiAnalysis
+    if (!finalAiAnalysis && content?.trim()) {
+      try {
+        finalAiAnalysis = await analyzeJournalEntry(content)
+      } catch (aiError) {
+        console.error('AI analysis failed:', aiError)
+        // Continue without AI analysis - user experience shouldn't suffer
+      }
     }
 
     const result = await withUnsentDB(async (db) => {
@@ -155,8 +158,8 @@ export async function POST(request: NextRequest) {
         stageHistory: [],
         
         // AI Analysis Results
-        aiEnabled: true,
-        aiAnalysis: aiAnalysis,
+        aiEnabled: !!finalAiAnalysis,
+        aiAnalysis: finalAiAnalysis,
         
         // Vectorization (for future use)
         isVectorized: false,
@@ -188,7 +191,7 @@ export async function POST(request: NextRequest) {
         isEdited: false,
         editHistory: [],
         messageType: 'user' as const,
-        emotionalAnalysis: aiAnalysis?.emotionalAnalysis || {
+        emotionalAnalysis: finalAiAnalysis?.emotionalAnalysis || {
           primaryEmotion: 'calm' as EmotionalTone,
           intensity: 5,
           underlyingThemes: ['reflection'],
@@ -217,7 +220,7 @@ export async function POST(request: NextRequest) {
         id: entryResult.insertedId.toString(),
         ...journalEntry,
         content: content, // Return unencrypted for immediate use
-        aiAnalysis
+        aiAnalysis: finalAiAnalysis
       }
     })
 

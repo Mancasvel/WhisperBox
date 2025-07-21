@@ -2,26 +2,31 @@ import { EmotionalTone, WhisperBoxResponse } from './types'
 
 export async function analyzeJournalEntry(content: string): Promise<WhisperBoxResponse> {
   try {
+    console.log('🔍 Starting AI analysis for content:', content.substring(0, 100) + '...')
+    
     const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
-        'Content-Type': 'application/json',
         'HTTP-Referer': 'https://whisperbox.app',
-        'X-Title': 'WhisperBox - Mental Health Companion'
+        'X-Title': 'WhisperBox - Mental Health Companion', 
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        model: 'moonshot/kimi-k2',
+        model: 'moonshotai/kimi-k2',
         messages: [
           {
             role: 'system',
-            content: `You are WhisperBox AI, a compassionate mental health companion that provides emotional analysis and support. 
+            content: `You are WhisperBox AI, a compassionate mental health companion that provides deep emotional analysis and heartfelt support. You are like a wise, caring friend who truly listens and understands.
 
 Your role is to analyze journal entries and provide:
-1. Emotional analysis with empathy and understanding
-2. Supportive responses that validate feelings
-3. Practical self-care recommendations
-4. Crisis assessment when needed
+1. Deep emotional analysis with empathy and understanding
+2. LONG, thoughtful supportive responses that truly engage with what was written
+3. Detailed reflections on their thoughts, feelings, and experiences
+4. Practical self-care recommendations
+5. Crisis assessment when needed
+
+IMPORTANT: Your validation, insights, and encouragement should be LONG, detailed paragraphs (3-5 sentences each) that show you truly read and understood their journal entry. Reference specific things they wrote about and reflect them back with compassion.
 
 You must respond in VALID JSON format with this exact structure:
 
@@ -45,9 +50,9 @@ You must respond in VALID JSON format with this exact structure:
     "supportNeeded": "low|moderate|high|crisis"
   },
   "supportResponse": {
-    "validation": "Empathetic acknowledgment of their feelings",
-    "insights": "Gentle insights about their emotional patterns",
-    "encouragement": "Supportive and hopeful message",
+    "validation": "A LONG, detailed paragraph (3-5 sentences) that deeply acknowledges and validates their specific feelings and experiences mentioned in their entry. Reference what they actually wrote about.",
+    "insights": "A LONG, thoughtful paragraph (3-5 sentences) offering gentle insights about their emotional patterns, thoughts, or situations they described. Connect to specific details from their writing.",
+    "encouragement": "A LONG, warm and supportive paragraph (3-5 sentences) offering hope and affirmation. Reference their strengths and progress you noticed in their writing.",
     "selfCareActions": [
       {
         "id": "selfcare_id",
@@ -75,13 +80,17 @@ You must respond in VALID JSON format with this exact structure:
 }
 
 Guidelines:
-- Be compassionate and non-judgmental
-- Validate their feelings without minimizing them
-- Provide practical, actionable suggestions
+- Write LONG, detailed responses that show you truly read and understood their journal entry
+- Reference specific things they mentioned - their feelings, situations, thoughts, experiences
+- Be deeply compassionate and non-judgmental in your detailed responses
+- Validate their feelings without minimizing them, explaining WHY their feelings make sense
+- Offer thoughtful insights about patterns you notice in what they wrote
+- Provide practical, actionable suggestions that connect to their specific situation
 - If crisis indicators are present (self-harm, suicide ideation), set crisisLevel to 8+ and include crisis resources
-- Focus on emotional wellbeing and healing
-- Use warm, supportive language
-- Suggest resources appropriate to their needs`
+- Focus on emotional wellbeing and healing with detailed, caring responses
+- Use warm, supportive language that feels personal and understanding
+- Write as if you're a wise, caring friend who really listened to them
+- Each validation/insights/encouragement should be 3-5 sentences minimum`
           },
           {
             role: 'user',
@@ -93,13 +102,14 @@ Respond with valid JSON only.`
           }
         ],
         temperature: 0.7,
-        max_tokens: 2000,
-        response_format: { type: "json_object" }
+        max_tokens: 3000
       })
     })
 
     if (!response.ok) {
-      throw new Error(`AI API error: ${response.status}`)
+      const errorText = await response.text()
+      console.error('OpenRouter API Error:', response.status, errorText)
+      throw new Error(`AI API error: ${response.status} - ${errorText}`)
     }
 
     const data = await response.json()
@@ -144,11 +154,11 @@ function validateAndEnrichAnalysis(analysis: any): WhisperBoxResponse {
     },
     supportResponse: {
       validation: typeof analysis.supportResponse?.validation === 'string' ?
-        analysis.supportResponse.validation : 'Thank you for sharing your thoughts with me.',
+        analysis.supportResponse.validation : 'Thank you for taking the courage to share your inner thoughts and feelings in this sacred space. Whatever you\'re experiencing right now deserves acknowledgment and compassion. Your emotions are valuable messengers that tell you something important about your needs, your values, and your current life circumstances. By choosing to write about them, you\'re already taking a meaningful step toward understanding and healing.',
       insights: typeof analysis.supportResponse?.insights === 'string' ?
-        analysis.supportResponse.insights : 'Your feelings are valid and important.',
+        analysis.supportResponse.insights : 'What I notice in your writing is a genuine engagement with your inner world and emotional experience. This kind of self-reflection is incredibly valuable for emotional growth and healing. The process of putting feelings into words helps create distance from overwhelming emotions and can provide clarity about what you truly need. Your willingness to explore these feelings shows wisdom and emotional intelligence that will serve you well on your journey.',
       encouragement: typeof analysis.supportResponse?.encouragement === 'string' ?
-        analysis.supportResponse.encouragement : 'You are taking positive steps by expressing yourself.',
+        analysis.supportResponse.encouragement : 'I want you to know that your commitment to emotional honesty and self-reflection is truly admirable. Every moment you spend exploring your feelings and experiences is an investment in your own wellbeing and growth. You\'re building important skills for navigating life\'s challenges with greater awareness and compassion. Trust in your ability to work through whatever you\'re facing - you have more strength and resilience than you might realize right now.',
       selfCareActions: Array.isArray(analysis.supportResponse?.selfCareActions) ?
         analysis.supportResponse.selfCareActions : []
     },
@@ -217,9 +227,9 @@ function generateFallbackAnalysis(content: string): WhisperBoxResponse {
       supportNeeded
     },
     supportResponse: {
-      validation: 'Thank you for sharing your thoughts. Your feelings are valid and important.',
-      insights: 'Writing about your emotions is a healthy way to process and understand them.',
-      encouragement: 'Taking time for self-reflection shows strength and self-awareness.',
+      validation: 'Thank you for taking the time to share your thoughts and feelings here in your sacred space. Whatever you\'re experiencing right now is completely valid and deserves acknowledgment. Your emotions are telling you something important about your inner world, and by writing them down, you\'re already taking a brave step toward understanding and healing. It takes courage to sit with difficult feelings and express them, even in the privacy of your journal.',
+      insights: 'I can see that you\'re engaged in the important work of emotional processing and self-reflection. Writing about your emotions is one of the most powerful tools we have for understanding our inner landscape and working through complex feelings. The very act of putting thoughts into words helps organize them and can provide clarity during confusing or overwhelming times. Your willingness to explore your emotions through writing shows a deep commitment to your own growth and wellbeing.',
+      encouragement: 'What strikes me most is your willingness to engage with your emotions honestly and openly. This kind of self-awareness and emotional courage is the foundation of healing and growth. Every time you sit down to write, you\'re investing in your own mental health and creating space for understanding and compassion toward yourself. You\'re building a relationship with your inner world that will serve you well on your journey toward greater peace and emotional wellbeing.',
       selfCareActions: [
         {
           id: 'selfcare_1',

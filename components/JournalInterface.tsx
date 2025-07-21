@@ -49,6 +49,8 @@ import {
   Zap
 } from 'lucide-react'
 
+import { WhisperBoxResponse } from '@/lib/types'
+
 interface JournalEntry {
   id?: string
   title: string
@@ -57,50 +59,10 @@ interface JournalEntry {
   tags: string[]
   emotionalScore: number
   createdAt: Date
+  aiAnalysis?: AIAnalysis
 }
 
-interface AIAnalysis {
-  emotionalAnalysis: {
-    primaryEmotion: string
-    intensity: number
-    underlyingThemes: string[]
-    emotionalProgress: string
-    recommendedActions: Array<{
-      id: string
-      category: string
-      title: string
-      description: string
-      duration: string
-      difficulty: string
-    }>
-    crisisLevel: number
-    supportNeeded: string
-  }
-  supportResponse: {
-    validation: string
-    insights: string
-    encouragement: string
-    selfCareActions: Array<{
-      id: string
-      category: string
-      title: string
-      description: string
-      duration: string
-      difficulty: string
-    }>
-  }
-  mentalHealthMetrics: {
-    crisisLevel: number
-    supportNeeded: string
-    recommendedResources: Array<{
-      name: string
-      type: string
-      contact: string
-      description: string
-      availability: string
-    }>
-  }
-}
+type AIAnalysis = WhisperBoxResponse
 
 interface JournalInterfaceProps {
   onSave?: (entry: JournalEntry) => void
@@ -160,7 +122,7 @@ export default function JournalInterface({
 
   const [isAnalyzing, setIsAnalyzing] = useState(false)
   const [aiAnalysis, setAiAnalysis] = useState<AIAnalysis | null>(null)
-  const [showAIResults, setShowAIResults] = useState(false)
+
   const [wordCount, setWordCount] = useState(0)
   const [timeSpent, setTimeSpent] = useState(0)
   const [showPrompts, setShowPrompts] = useState(false)
@@ -202,14 +164,19 @@ export default function JournalInterface({
   }
 
   const handleAnalyze = async () => {
-    if (!entry.content.trim() || !onAnalyze) return
+    if (!entry.content.trim() || !onAnalyze || !onSave) return
 
     setIsAnalyzing(true)
     try {
+      // First get AI analysis
       const analysis = await onAnalyze(entry.content)
       if (analysis) {
         setAiAnalysis(analysis)
-        setShowAIResults(true)
+        // Save the entry with AI analysis
+        await onSave({
+          ...entry,
+          aiAnalysis: analysis
+        })
       }
     } catch (error) {
       console.error('Analysis failed:', error)
@@ -387,16 +354,7 @@ export default function JournalInterface({
           </div>
 
           <div className="flex items-center space-x-3">
-            {aiAnalysis && (
-              <Button
-                onClick={() => setShowAIResults(true)}
-                variant="outline"
-                className="font-ui"
-              >
-                <Brain className="w-4 h-4 mr-2" />
-                View Insights
-              </Button>
-            )}
+
             <Button
               onClick={handleAnalyze}
               disabled={!entry.content.trim() || isAnalyzing}
@@ -423,137 +381,64 @@ export default function JournalInterface({
           </div>
         </motion.div>
 
-        {/* AI Analysis Results Modal */}
-        <AnimatePresence>
-          {showAIResults && aiAnalysis && (
-            <Dialog open={showAIResults} onClose={() => setShowAIResults(false)}>
-              <div className="fixed inset-0 bg-black/25 backdrop-blur-sm" aria-hidden="true" />
-              <div className="fixed inset-0 flex items-center justify-center p-4">
-                <Dialog.Panel>
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.2 }}
-                    className="ai-reflection max-w-2xl w-full max-h-[80vh] overflow-y-auto"
-                  >
-                    <div className="flex items-center justify-between mb-6">
-                      <div className="flex items-center space-x-3">
-                        <div className="lottie-container w-12 h-12">
-                          <Lottie animationData={heartAnimation} loop autoplay />
-                        </div>
-                        <div>
-                          <h3 className="text-xl font-journal font-semibold">AI Reflection</h3>
-                          <p className="text-sm text-muted-foreground">Compassionate insights for your journey</p>
-                        </div>
-                      </div>
-                      <Button variant="ghost" onClick={() => setShowAIResults(false)}>
-                        ×
-                      </Button>
-                    </div>
+        {/* Inline AI Analysis Results */}
+        {aiAnalysis && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="mb-6"
+          >
+            <Card className="ai-reflection border-whisper-green-200/30">
+              <CardHeader>
+                <div className="flex items-center space-x-3">
+                  <div className="lottie-container w-10 h-10">
+                    <Lottie animationData={heartAnimation} loop autoplay />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-journal font-semibold">AI Reflection</h3>
+                    <p className="text-sm text-muted-foreground">Compassionate insights for your journey</p>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-6">
+                  {/* Validation */}
+                  <div>
+                    <h4 className="font-medium mb-3 text-whisper-green-600 flex items-center">
+                      <Heart className="w-4 h-4 mr-2" />
+                      Validation
+                    </h4>
+                    <p className="text-muted-foreground leading-relaxed">{aiAnalysis.supportResponse.validation}</p>
+                  </div>
+                  
+                  <Separator />
+                  
+                  {/* Insights */}
+                  <div>
+                    <h4 className="font-medium mb-3 text-whisper-green-600 flex items-center">
+                      <Sparkles className="w-4 h-4 mr-2" />
+                      Insights
+                    </h4>
+                    <p className="text-muted-foreground leading-relaxed">{aiAnalysis.supportResponse.insights}</p>
+                  </div>
+                  
+                  <Separator />
+                  
+                  {/* Encouragement */}
+                  <div>
+                    <h4 className="font-medium mb-3 text-whisper-orange-600 flex items-center">
+                      <Lightbulb className="w-4 h-4 mr-2" />
+                      Encouragement
+                    </h4>
+                    <p className="text-muted-foreground leading-relaxed">{aiAnalysis.supportResponse.encouragement}</p>
+                  </div>
 
-                    <Tabs defaultValue="analysis" className="w-full">
-                      <TabsList className="grid w-full grid-cols-3">
-                        <TabsTrigger value="analysis">Analysis</TabsTrigger>
-                        <TabsTrigger value="support">Support</TabsTrigger>
-                        <TabsTrigger value="actions">Actions</TabsTrigger>
-                      </TabsList>
-
-                      <TabsContent value="analysis" className="mt-6">
-                        <div className="space-y-4">
-                          <div>
-                            <h4 className="font-medium mb-2">Primary Emotion</h4>
-                            <Badge className={`emotion-badge ${aiAnalysis.emotionalAnalysis.primaryEmotion}`}>
-                              {aiAnalysis.emotionalAnalysis.primaryEmotion}
-                            </Badge>
-                          </div>
-                          
-                          <div>
-                            <h4 className="font-medium mb-2">Emotional Intensity</h4>
-                            <div className="flex items-center space-x-3">
-                              <Progress value={aiAnalysis.emotionalAnalysis.intensity * 10} className="flex-1" />
-                              <span className="text-sm font-medium">{aiAnalysis.emotionalAnalysis.intensity}/10</span>
-                            </div>
-                          </div>
-
-                          {aiAnalysis.emotionalAnalysis.underlyingThemes.length > 0 && (
-                            <div>
-                              <h4 className="font-medium mb-2">Themes</h4>
-                              <div className="flex flex-wrap gap-2">
-                                {aiAnalysis.emotionalAnalysis.underlyingThemes.map((theme, index) => (
-                                  <Badge key={index} variant="outline">
-                                    {theme}
-                                  </Badge>
-                                ))}
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      </TabsContent>
-
-                      <TabsContent value="support" className="mt-6">
-                        <div className="prose-journal">
-                          <div className="space-y-4">
-                            <div>
-                              <h4 className="font-medium mb-2">Validation</h4>
-                              <p className="text-muted-foreground">{aiAnalysis.supportResponse.validation}</p>
-                            </div>
-                            
-                            <Separator />
-                            
-                            <div>
-                              <h4 className="font-medium mb-2">Insights</h4>
-                              <p className="text-muted-foreground">{aiAnalysis.supportResponse.insights}</p>
-                            </div>
-                            
-                            <Separator />
-                            
-                            <div>
-                              <h4 className="font-medium mb-2">Encouragement</h4>
-                              <p className="text-muted-foreground">{aiAnalysis.supportResponse.encouragement}</p>
-                            </div>
-                          </div>
-                        </div>
-                      </TabsContent>
-
-                      <TabsContent value="actions" className="mt-6">
-                        <div className="space-y-4">
-                          {aiAnalysis.supportResponse.selfCareActions.map((action, index) => (
-                            <motion.div
-                              key={action.id}
-                              initial={{ opacity: 0, x: -20 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: index * 0.1 }}
-                              className="self-care-card"
-                            >
-                              <div className="flex items-start space-x-3">
-                                <div className="w-10 h-10 rounded-lg bg-whisper-green-100 flex items-center justify-center">
-                                  <Target className="w-5 h-5 text-whisper-green-600" />
-                                </div>
-                                <div className="flex-1">
-                                  <h5 className="font-medium">{action.title}</h5>
-                                  <p className="text-sm text-muted-foreground mb-2">{action.description}</p>
-                                  <div className="flex items-center space-x-3 text-xs text-muted-foreground">
-                                    <span>⏱️ {action.duration}</span>
-                                    <span>📊 {action.difficulty}</span>
-                                    <Badge variant="outline" className="text-xs">
-                                      {action.category}
-                                    </Badge>
-                                  </div>
-                                </div>
-                              </div>
-                            </motion.div>
-                          ))}
-                        </div>
-                      </TabsContent>
-                    </Tabs>
-
-                    {aiAnalysis.mentalHealthMetrics.crisisLevel > 7 && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="crisis-alert mt-6"
-                      >
+                  {/* Crisis Support if needed */}
+                  {aiAnalysis.mentalHealthMetrics.crisisLevel > 7 && (
+                    <>
+                      <Separator />
+                      <div className="crisis-alert">
                         <div className="flex items-start space-x-3">
                           <LifeBuoy className="w-6 h-6 text-red-600 mt-1" />
                           <div>
@@ -573,14 +458,14 @@ export default function JournalInterface({
                             </div>
                           </div>
                         </div>
-                      </motion.div>
-                    )}
-                  </motion.div>
-                </Dialog.Panel>
-              </div>
-            </Dialog>
-          )}
-        </AnimatePresence>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        )}
 
         {/* Prompts Modal */}
         <Dialog open={showPrompts} onClose={() => setShowPrompts(false)}>
