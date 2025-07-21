@@ -115,7 +115,7 @@ export async function sendMagicLinkEmail(email: string, magicLinkUrl: string): P
             
             <div style="text-align: center; margin: 30px 0;">
               <a href="${magicLinkUrl}" 
-                 style="display: inline-block; padding: 15px 30px; background: linear-gradient(45deg, #22c55e, #16a34a); color: white; text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 16px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">
+                 style="display: inline-block; padding: 15px 30px; background: linear-gradient(45deg, #22c55e, #16a34a); color: green; text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 16px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);">
                 Access WhisperBox
               </a>
             </div>
