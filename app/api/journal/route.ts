@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
     }
 
     const { searchParams } = new URL(request.url)
-    const limit = parseInt(searchParams.get('limit') || '10')
+    const limit = parseInt(searchParams.get('limit') || '20')
     const skip = parseInt(searchParams.get('skip') || '0')
     const journalType = searchParams.get('type')
 
@@ -49,9 +49,11 @@ export async function GET(request: NextRequest) {
             .toArray()
 
           let content = ''
+          let fullContent = ''
           if (messages.length > 0) {
             const userKey = generateUserKey(currentUser.userId)
-            content = decryptMessage(messages[0].content, userKey)
+            fullContent = decryptMessage(messages[0].content, userKey)
+            content = fullContent.slice(0, 200) + (fullContent.length > 200 ? '...' : '') // Preview
           }
 
           return {
@@ -59,7 +61,8 @@ export async function GET(request: NextRequest) {
             title: entry.title,
             journalType: entry.journalType || 'daily',
             mood: entry.mood,
-            content: content.slice(0, 200) + (content.length > 200 ? '...' : ''), // Preview
+            content: content,
+            fullContent: fullContent, // For detailed view
             currentStage: entry.currentStage,
             emotionalScore: entry.emotionalScore,
             lastActive: entry.lastMessageAt,
@@ -67,7 +70,8 @@ export async function GET(request: NextRequest) {
             messageCount: entry.messageCount || 0,
             tags: entry.tags || [],
             isPrivate: entry.isPrivate !== false, // Default to private
-            aiAnalysis: entry.aiAnalysis || null
+            aiAnalysis: entry.aiAnalysis || null,
+            hasAiAnalysis: !!entry.aiAnalysis
           }
         })
       )
