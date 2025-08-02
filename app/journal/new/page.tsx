@@ -241,7 +241,7 @@ export default function NewJournalPage() {
                       id="journalType"
                       value={entry.journalType} 
                       onChange={(e) => setEntry(prev => ({ ...prev, journalType: e.target.value }))}
-                      className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-whisper-green/20 focus:border-whisper-green outline-none bg-white"
+                      className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-whisper-green/20 focus:border-whisper-green outline-none bg-white text-gray-900"
                     >
                       {journalTypes.map((type) => (
                         <option key={type.value} value={type.value}>
@@ -259,7 +259,7 @@ export default function NewJournalPage() {
                       id="mood"
                       value={entry.mood} 
                       onChange={(e) => setEntry(prev => ({ ...prev, mood: e.target.value }))}
-                      className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-whisper-green/20 focus:border-whisper-green outline-none bg-white"
+                      className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-whisper-green/20 focus:border-whisper-green outline-none bg-white text-gray-900"
                     >
                       <option value="">How are you feeling?</option>
                       {moodOptions.map((mood) => (
