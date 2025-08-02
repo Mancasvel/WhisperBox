@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useCallback, useState } from 'react'
+import { useEffect, useCallback, useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
 import ProtectedRoute from '@/components/ProtectedRoute'
@@ -57,6 +57,8 @@ export default function NewJournalPage() {
     journalType: 'daily'
   })
   const [tagInput, setTagInput] = useState('')
+  const editorRef = useRef<any>(null)
+  const contentRef = useRef<string>('')
 
   // Fix auto-scroll issue
   useEffect(() => {
@@ -90,8 +92,15 @@ export default function NewJournalPage() {
     }
   }, [entry.journalType])
 
+  const handleContentChange = useCallback((value: string) => {
+    contentRef.current = value || ''
+  }, [])
+
   const handleSave = useCallback(async () => {
-    if (!entry.content.trim()) {
+    // Get content from the ref
+    const content = contentRef.current
+    
+    if (!content.trim()) {
       alert('Please write something in your journal before saving.')
       return
     }
@@ -105,7 +114,7 @@ export default function NewJournalPage() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          content: entry.content,
+          content: content,
           title: entry.title,
           mood: entry.mood,
           tags: entry.tags,
@@ -326,11 +335,11 @@ export default function NewJournalPage() {
                   </label>
                   <div className="prose-editor">
                     <SimpleMDE
-                      value={entry.content}
-                      onChange={(value) => setEntry(prev => ({ ...prev, content: value || '' }))}
+                      ref={editorRef}
+                      onChange={handleContentChange}
                       options={{
                         spellChecker: false,
-                        autofocus: true,
+                        autofocus: false,
                         placeholder: "This is your safe space. Write freely about your thoughts, feelings, experiences, or anything that's on your mind. Your words are private and secure...",
                         toolbar: [
                           'bold', 'italic', 'strikethrough', '|',
@@ -351,7 +360,7 @@ export default function NewJournalPage() {
                 <div className="flex justify-end pt-6 border-t border-gray-100">
                   <Button
                     onClick={handleSave}
-                    disabled={saving || !entry.content.trim()}
+                    disabled={saving}
                     className="bg-whisper-green hover:bg-whisper-green/90 text-white px-8 py-3 text-lg font-medium"
                   >
                     {saving ? (
