@@ -390,7 +390,7 @@ export const GroundingExercise: React.FC<{ onClose?: () => void }> = ({ onClose 
           </div>
           <Button
             onClick={() => setIsStarted(true)}
-            className="bg-gradient-to-r from-emotional-calm-500 to-emotional-healing-500 hover:from-emotional-calm-600 hover:to-emotional-healing-600"
+            className="bg-gradient-to-r from-emotional-calm-500 to-emotional-healing-500 text-white hover:from-emotional-calm-600 hover:to-emotional-healing-600 hover:text-gray-800"
           >
             Begin Exercise
           </Button>
@@ -454,7 +454,7 @@ export const GroundingExercise: React.FC<{ onClose?: () => void }> = ({ onClose 
                       ) : (
                         <Button
                           onClick={handleStepComplete}
-                          className="bg-gradient-to-r from-emotional-calm-500 to-emotional-healing-500 hover:from-emotional-calm-600 hover:to-emotional-healing-600"
+                          className="bg-gradient-to-r from-emotional-calm-500 to-emotional-healing-500 text-white hover:from-emotional-calm-600 hover:to-emotional-healing-600 hover:text-gray-800"
                         >
                           I've identified {steps[currentStep].number}
                         </Button>
