@@ -273,7 +273,7 @@ export default function NewJournalPage() {
 
                 {/* Title */}
                 <div className="space-y-2">
-                  <label htmlFor="title" className="text-sm font-medium text-gray-700">
+                  <label htmlFor="title" className="text-sm font-medium text-gray-900">
                     Entry Title
                   </label>
                   <Input
