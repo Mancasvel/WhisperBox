@@ -169,7 +169,7 @@ export default function NewConversationPage() {
 
             <motion.button
               onClick={() => router.push('/conversations')}
-              className="px-8 py-4 bg-transparent border border-gray-600 text-gray-300 rounded-full hover:border-gray-400 hover:text-white transition-all duration-500 font-light"
+              className="px-8 py-4 bg-transparent border border-gray-600 text-gray-300 rounded-full hover:border-gray-400 hover:text-gray-700 hover:bg-gray-50 transition-all duration-500 font-light"
               whileHover={{ scale: 1.02 }}
             >
               See all conversations
