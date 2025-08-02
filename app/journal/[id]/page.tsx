@@ -190,14 +190,20 @@ export default function JournalEntryPage() {
   if (loading) {
     return (
       <ProtectedRoute>
-        <div className="journal-sanctuary min-h-screen bg-gradient-to-br from-whisper-green/5 to-blue-50/30">
+        <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-purple-50">
           <FeatureNavigation
             title="Loading Entry..."
             description="Retrieving your journal entry"
           />
-          <div className="container mx-auto px-4 py-8 max-w-4xl">
+          <div className="container mx-auto px-4 py-8 max-w-5xl">
             <div className="flex items-center justify-center min-h-[400px]">
-              <Loader2 className="w-8 h-8 animate-spin text-whisper-green" />
+              <div className="text-center bg-white/80 backdrop-blur-sm border border-white/40 rounded-3xl p-12 shadow-xl">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center mx-auto mb-6">
+                  <Loader2 className="w-8 h-8 animate-spin text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Loading your thoughts...</h3>
+                <p className="text-gray-600">Just a moment while we retrieve your journal entry</p>
+              </div>
             </div>
           </div>
         </div>
@@ -208,30 +214,35 @@ export default function JournalEntryPage() {
   if (error || !entry) {
     return (
       <ProtectedRoute>
-        <div className="journal-sanctuary min-h-screen bg-gradient-to-br from-whisper-green/5 to-blue-50/30">
+        <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-purple-50">
           <FeatureNavigation
             title="Entry Not Found"
             description="Unable to load journal entry"
           />
-          <div className="container mx-auto px-4 py-8 max-w-4xl">
-            <Card className="text-center">
-              <CardContent className="py-12">
-                <BookOpen className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  {error || 'Journal entry not found'}
-                </h3>
-                <p className="text-gray-600 mb-6">
-                  The entry you're looking for doesn't exist or couldn't be loaded.
-                </p>
-                <Button 
-                  onClick={() => router.push('/journal')}
-                  className="bg-whisper-green hover:bg-whisper-green/90 text-white"
-                >
-                  <ArrowLeft className="w-4 h-4 mr-2" />
-                  Back to Journal
-                </Button>
-              </CardContent>
-            </Card>
+          <div className="container mx-auto px-4 py-8 max-w-5xl">
+            <div className="flex items-center justify-center min-h-[400px]">
+              <Card className="border-0 shadow-xl bg-white/80 backdrop-blur-sm rounded-3xl overflow-hidden">
+                <CardContent className="p-12 text-center">
+                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-red-400 to-orange-500 flex items-center justify-center mx-auto mb-6 shadow-lg">
+                    <BookOpen className="w-10 h-10 text-white" />
+                  </div>
+                  <h3 className="text-3xl font-bold text-gray-900 mb-4">
+                    {error || 'Journal entry not found'}
+                  </h3>
+                  <p className="text-gray-600 text-lg mb-8 max-w-md mx-auto leading-relaxed">
+                    The entry you're looking for doesn't exist or couldn't be loaded. It may have been moved or deleted.
+                  </p>
+                  <Button 
+                    onClick={() => router.push('/journal')}
+                    size="lg"
+                    className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white px-8 py-4 rounded-2xl shadow-lg font-semibold"
+                  >
+                    <ArrowLeft className="w-5 h-5 mr-3" />
+                    Back to Journal
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </ProtectedRoute>
@@ -240,73 +251,109 @@ export default function JournalEntryPage() {
 
   return (
     <ProtectedRoute>
-      <div className="journal-sanctuary min-h-screen bg-gradient-to-br from-whisper-green/5 to-blue-50/30">
+      <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-purple-50">
         <FeatureNavigation
           title={entry.title}
           description="Your private journal entry"
         />
 
-        <div className="container mx-auto px-4 py-8 max-w-4xl">
+        <div className="container mx-auto px-4 py-8 max-w-5xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="space-y-6"
+            className="space-y-8"
           >
             {/* Back Button */}
             <Button
               variant="ghost"
               onClick={() => router.push('/journal')}
-              className="text-gray-600 hover:text-whisper-green"
+              className="text-gray-600 hover:text-blue-600 bg-white/60 backdrop-blur-sm rounded-2xl px-6 py-3 shadow-md font-medium"
             >
-              <ArrowLeft className="w-4 h-4 mr-2" />
+              <ArrowLeft className="w-5 h-5 mr-3" />
               Back to Journal
             </Button>
 
             {/* Entry Content */}
-            <Card className="shadow-xl border-0 bg-white/80 backdrop-blur-sm">
-              <CardHeader className="border-b border-gray-100">
+            <Card className="border-0 shadow-2xl bg-white/80 backdrop-blur-sm overflow-hidden">
+              <div className="h-2 bg-gradient-to-r from-green-400 via-blue-400 to-purple-400"></div>
+              <CardHeader className="bg-gradient-to-br from-green-50/50 via-blue-50/50 to-purple-50/50 border-b border-white/40 p-8">
                 <div className="flex items-start justify-between">
-                  <div className="space-y-3 flex-1">
-                    <CardTitle className="text-2xl font-bold text-gray-900">
-                      {entry.title}
-                    </CardTitle>
+                  <div className="space-y-4 flex-1">
+                    <div className="flex items-center space-x-4">
+                      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center shadow-lg">
+                        <BookOpen className="w-8 h-8 text-white" />
+                      </div>
+                      <CardTitle className="text-3xl font-bold text-gray-900">
+                        {entry.title}
+                      </CardTitle>
+                    </div>
                     
-                    <div className="flex items-center gap-3 flex-wrap">
-                      <Badge 
-                        variant="outline" 
-                        className={journalTypeColors[entry.journalType as keyof typeof journalTypeColors] || 'bg-gray-50 text-gray-700'}
-                      >
-                        {entry.journalType}
-                      </Badge>
-                      
-                      {entry.mood && (
-                        <Badge 
-                          variant="outline"
-                          className={moodColors[entry.mood as keyof typeof moodColors] || 'bg-gray-50 text-gray-700'}
-                        >
-                          <Heart className="w-3 h-3 mr-1" />
-                          {entry.mood}
-                        </Badge>
-                      )}
-                      
-                      <div className="flex items-center text-sm text-gray-500">
-                        <Calendar className="w-3 h-3 mr-1" />
-                        {formatDate(entry.createdAt)}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-3">
+                        <div className="flex items-center space-x-3">
+                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center">
+                            <BookOpen className="w-5 h-5 text-white" />
+                          </div>
+                          <div>
+                            <div className="text-sm text-gray-600">Journal Type</div>
+                            <Badge className="bg-gradient-to-r from-green-100 to-blue-100 text-green-800 border-green-200 font-medium">
+                              {entry.journalType}
+                            </Badge>
+                          </div>
+                        </div>
+                        
+                        {entry.mood && (
+                          <div className="flex items-center space-x-3">
+                            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center">
+                              <Heart className="w-5 h-5 text-white" />
+                            </div>
+                            <div>
+                              <div className="text-sm text-gray-600">Mood</div>
+                              <Badge className="bg-gradient-to-r from-purple-100 to-pink-100 text-purple-800 border-purple-200 font-medium">
+                                {entry.mood}
+                              </Badge>
+                            </div>
+                          </div>
+                        )}
                       </div>
                       
-                      {entry.emotionalScore && (
-                        <div className={`text-sm font-medium ${getEmotionalScoreColor(entry.emotionalScore)}`}>
-                          Intensity: {entry.emotionalScore}/10
+                      <div className="space-y-3">
+                        <div className="flex items-center space-x-3">
+                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gray-400 to-gray-500 flex items-center justify-center">
+                            <Calendar className="w-5 h-5 text-white" />
+                          </div>
+                          <div>
+                            <div className="text-sm text-gray-600">Created</div>
+                            <div className="font-medium text-gray-900">{formatDate(entry.createdAt)}</div>
+                          </div>
                         </div>
-                      )}
+                        
+                        {entry.emotionalScore && (
+                          <div className="flex items-center space-x-3">
+                            <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                              entry.emotionalScore <= 3 ? 'bg-gradient-to-br from-red-400 to-red-500' :
+                              entry.emotionalScore <= 6 ? 'bg-gradient-to-br from-yellow-400 to-orange-500' :
+                              'bg-gradient-to-br from-green-400 to-green-500'
+                            }`}>
+                              <span className="text-white font-bold text-sm">{entry.emotionalScore}</span>
+                            </div>
+                            <div>
+                              <div className="text-sm text-gray-600">Emotional Intensity</div>
+                              <div className={`font-medium ${getEmotionalScoreColor(entry.emotionalScore)}`}>
+                                {entry.emotionalScore}/10
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                   
-                  <div className="flex gap-2">
+                  <div className="flex gap-3">
                     {entry.hasAiAnalysis && (
-                      <Badge className="bg-gradient-to-r from-purple-100 to-blue-100 text-purple-700 border-purple-200">
-                        <Sparkles className="w-3 h-3 mr-1" />
+                      <Badge className="bg-gradient-to-r from-purple-100 to-indigo-100 text-purple-700 border-purple-200 px-4 py-2">
+                        <Sparkles className="w-4 h-4 mr-2" />
                         AI Analyzed
                       </Badge>
                     )}
@@ -317,38 +364,57 @@ export default function JournalEntryPage() {
               <CardContent className="p-8">
                 {/* Tags */}
                 {entry.tags && entry.tags.length > 0 && (
-                  <div className="flex gap-2 flex-wrap mb-6">
-                    {entry.tags.map((tag, index) => (
-                      <Badge key={index} variant="secondary" className="text-xs">
-                        <Tag className="w-3 h-3 mr-1" />
-                        {tag}
-                      </Badge>
-                    ))}
+                  <div className="mb-8">
+                    <div className="flex items-center space-x-3 mb-4">
+                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center">
+                        <Tag className="w-4 h-4 text-white" />
+                      </div>
+                      <h4 className="text-lg font-bold text-gray-900">Tags</h4>
+                    </div>
+                    <div className="flex gap-3 flex-wrap">
+                      {entry.tags.map((tag, index) => (
+                        <Badge key={index} className="bg-gradient-to-r from-indigo-100 to-purple-100 text-indigo-800 border-indigo-200 px-3 py-2 text-sm">
+                          #{tag}
+                        </Badge>
+                      ))}
+                    </div>
                   </div>
                 )}
 
                 {/* Content */}
-                <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed whitespace-pre-wrap mb-8">
-                  {entry.fullContent || entry.content}
+                <div className="mb-8">
+                  <div className="flex items-center space-x-3 mb-6">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center">
+                      <Heart className="w-4 h-4 text-white" />
+                    </div>
+                    <h4 className="text-lg font-bold text-gray-900">Your Thoughts & Feelings</h4>
+                  </div>
+                  <div className="bg-gradient-to-br from-gray-50 to-blue-50/30 border border-gray-200 rounded-2xl p-6 shadow-sm">
+                    <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed whitespace-pre-wrap">
+                      {entry.fullContent || entry.content}
+                    </div>
+                  </div>
                 </div>
 
                 {/* Analyze Button */}
                 {!entry.hasAiAnalysis && (
-                  <div className="flex justify-center mb-8">
+                  <div className="text-center">
+                    <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent mb-8"></div>
                     <Button
                       onClick={handleAnalyze}
                       disabled={analyzing}
-                      className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-3 text-lg font-medium"
+                      size="lg"
+                      className="bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white px-12 py-4 text-xl font-bold rounded-2xl shadow-lg disabled:opacity-50"
                     >
                       {analyzing ? (
                         <>
-                          <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                          <Loader2 className="w-6 h-6 mr-3 animate-spin" />
                           Analyzing your emotions...
                         </>
                       ) : (
                         <>
-                          <Brain className="w-5 h-5 mr-2" />
-                          Analyze with AI
+                          <Brain className="w-6 h-6 mr-3" />
+                          Get AI Insights
                         </>
                       )}
                     </Button>
@@ -364,67 +430,83 @@ export default function JournalEntryPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                <Card className="shadow-xl border-0 bg-gradient-to-br from-purple-50 to-blue-50 backdrop-blur-sm">
-                  <CardHeader>
-                    <CardTitle className="text-xl font-bold text-gray-900 flex items-center">
-                      <Sparkles className="w-6 h-6 mr-3 text-purple-600" />
-                      AI Emotional Analysis
-                    </CardTitle>
+                <Card className="border-0 shadow-2xl bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50 backdrop-blur-sm overflow-hidden">
+                  <div className="h-2 bg-gradient-to-r from-purple-400 via-blue-400 to-indigo-400"></div>
+                  <CardHeader className="bg-gradient-to-br from-purple-50/50 via-blue-50/50 to-indigo-50/50 border-b border-white/40 p-8">
+                    <div className="flex items-center space-x-4">
+                      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center shadow-lg">
+                        <Sparkles className="w-8 h-8 text-white" />
+                      </div>
+                      <div>
+                        <CardTitle className="text-3xl font-bold text-gray-900">
+                          AI Emotional Analysis
+                        </CardTitle>
+                        <p className="text-gray-600 text-lg">Insights to support your emotional journey</p>
+                      </div>
+                    </div>
                   </CardHeader>
 
-                  <CardContent className="space-y-6">
+                  <CardContent className="p-8 space-y-8">
                     {/* Validation */}
-                    <div className="bg-white/50 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
-                        <Heart className="w-5 h-5 mr-2 text-whisper-green" />
-                        Validation & Support
-                      </h3>
-                      <p className="text-gray-700 leading-relaxed">
+                    <div className="bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 border border-white/40 rounded-2xl p-6 shadow-lg">
+                      <div className="flex items-center space-x-3 mb-4">
+                        <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center shadow-md">
+                          <Heart className="w-6 h-6 text-white" />
+                        </div>
+                        <h3 className="text-xl font-bold text-gray-900">Validation & Support</h3>
+                      </div>
+                      <p className="text-gray-700 leading-relaxed text-lg">
                         {entry.aiAnalysis.supportResponse?.validation}
                       </p>
                     </div>
 
                     {/* Insights */}
-                    <div className="bg-white/50 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
-                        <Lightbulb className="w-5 h-5 mr-2 text-amber-600" />
-                        Emotional Insights
-                      </h3>
-                      <p className="text-gray-700 leading-relaxed">
+                    <div className="bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 border border-white/40 rounded-2xl p-6 shadow-lg">
+                      <div className="flex items-center space-x-3 mb-4">
+                        <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center shadow-md">
+                          <Lightbulb className="w-6 h-6 text-white" />
+                        </div>
+                        <h3 className="text-xl font-bold text-gray-900">Emotional Insights</h3>
+                      </div>
+                      <p className="text-gray-700 leading-relaxed text-lg">
                         {entry.aiAnalysis.supportResponse?.insights}
                       </p>
                     </div>
 
                     {/* Encouragement */}
-                    <div className="bg-white/50 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
-                        <Target className="w-5 h-5 mr-2 text-blue-600" />
-                        Encouragement & Growth
-                      </h3>
-                      <p className="text-gray-700 leading-relaxed">
+                    <div className="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 border border-white/40 rounded-2xl p-6 shadow-lg">
+                      <div className="flex items-center space-x-3 mb-4">
+                        <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center shadow-md">
+                          <Target className="w-6 h-6 text-white" />
+                        </div>
+                        <h3 className="text-xl font-bold text-gray-900">Encouragement & Growth</h3>
+                      </div>
+                      <p className="text-gray-700 leading-relaxed text-lg">
                         {entry.aiAnalysis.supportResponse?.encouragement}
                       </p>
                     </div>
 
                     {/* Crisis Support */}
                     {entry.aiAnalysis.mentalHealthMetrics?.crisisLevel && entry.aiAnalysis.mentalHealthMetrics.crisisLevel > 7 && (
-                      <div className="bg-red-50 border border-red-200 rounded-lg p-6">
-                        <h3 className="text-lg font-semibold text-red-900 mb-3 flex items-center">
-                          <LifeBuoy className="w-5 h-5 mr-2 text-red-600" />
-                          Crisis Support Available
-                        </h3>
-                        <p className="text-red-800 leading-relaxed mb-4">
+                      <div className="bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50 border border-orange-200 rounded-2xl p-6 shadow-lg">
+                        <div className="flex items-center space-x-3 mb-4">
+                          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center shadow-md">
+                            <LifeBuoy className="w-6 h-6 text-white" />
+                          </div>
+                          <h3 className="text-xl font-bold text-gray-900">Crisis Support Available</h3>
+                        </div>
+                        <p className="text-gray-800 leading-relaxed mb-6 text-lg">
                           {entry.aiAnalysis.mentalHealthMetrics.supportNeeded}
                         </p>
                         
                         {entry.aiAnalysis.mentalHealthMetrics.recommendedResources && (
-                          <div className="space-y-2">
-                            <h4 className="font-medium text-red-900">Immediate Resources:</h4>
+                          <div className="space-y-3">
+                            <h4 className="font-bold text-gray-900">Immediate Resources:</h4>
                             {entry.aiAnalysis.mentalHealthMetrics.recommendedResources.map((resource, index) => (
-                              <div key={index} className="bg-white/50 rounded p-3">
-                                <div className="font-medium text-red-900">{resource.name}</div>
-                                <div className="text-sm text-red-700">{resource.contact}</div>
-                                <div className="text-xs text-red-600">{resource.availability}</div>
+                              <div key={index} className="bg-white/60 backdrop-blur-sm border border-white/40 rounded-xl p-4 shadow-sm">
+                                <div className="font-bold text-gray-900 mb-1">{resource.name}</div>
+                                <div className="text-orange-800 font-medium">{resource.contact}</div>
+                                <div className="text-sm text-gray-600">{resource.availability}</div>
                               </div>
                             ))}
                           </div>
@@ -434,20 +516,22 @@ export default function JournalEntryPage() {
 
                     {/* Self-Care Actions */}
                     {entry.aiAnalysis.supportResponse?.selfCareActions && entry.aiAnalysis.supportResponse.selfCareActions.length > 0 && (
-                      <div className="bg-white/50 rounded-lg p-6">
-                        <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                          <CheckCircle2 className="w-5 h-5 mr-2 text-emerald-600" />
-                          Recommended Self-Care Actions
-                        </h3>
-                        <div className="grid gap-3">
+                      <div className="bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 border border-white/40 rounded-2xl p-6 shadow-lg">
+                        <div className="flex items-center space-x-3 mb-6">
+                          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center shadow-md">
+                            <CheckCircle2 className="w-6 h-6 text-white" />
+                          </div>
+                          <h3 className="text-xl font-bold text-gray-900">Recommended Self-Care Actions</h3>
+                        </div>
+                        <div className="grid gap-4">
                           {entry.aiAnalysis.supportResponse.selfCareActions.slice(0, 3).map((action, index) => (
-                            <div key={index} className="bg-white/70 rounded-lg p-4 border border-gray-200">
+                            <div key={index} className="bg-white/60 backdrop-blur-sm border border-white/40 rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow">
                               <div className="flex items-start justify-between">
                                 <div className="flex-1">
-                                  <h4 className="font-medium text-gray-900">{action.title}</h4>
-                                  <p className="text-sm text-gray-600 mt-1">{action.description}</p>
+                                  <h4 className="font-bold text-gray-900 mb-2">{action.title}</h4>
+                                  <p className="text-gray-700 leading-relaxed">{action.description}</p>
                                 </div>
-                                <div className="text-xs text-gray-500 ml-4">
+                                <div className="ml-4 bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm font-medium">
                                   {action.duration}
                                 </div>
                               </div>
