@@ -16,7 +16,8 @@ import {
   Heart, 
   BookOpen,
   Tag,
-  CheckCircle2
+  CheckCircle2,
+  Sparkles
 } from 'lucide-react'
 
 // Dynamic import for SimpleMDE to avoid SSR issues
@@ -192,15 +193,22 @@ export default function NewJournalPage() {
   if (saved) {
     return (
       <ProtectedRoute>
-        <div className="journal-sanctuary min-h-screen bg-gradient-to-br from-whisper-green/5 to-blue-50/30 flex items-center justify-center">
+        <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 flex items-center justify-center">
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="text-center"
+            className="text-center bg-white/80 backdrop-blur-sm border border-white/40 rounded-3xl p-12 shadow-2xl"
           >
-            <CheckCircle2 className="w-16 h-16 text-whisper-green mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">Entry Saved! 💚</h2>
-            <p className="text-gray-600">Redirecting to your journal entry...</p>
+            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center mx-auto mb-6 shadow-lg">
+              <CheckCircle2 className="w-10 h-10 text-white" />
+            </div>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Entry Saved! ✨</h2>
+            <p className="text-gray-600 text-lg">Redirecting to your journal entry...</p>
+            <div className="mt-6 flex items-center justify-center space-x-2">
+              <div className="w-2 h-2 rounded-full bg-green-400 animate-bounce"></div>
+              <div className="w-2 h-2 rounded-full bg-blue-400 animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+              <div className="w-2 h-2 rounded-full bg-purple-400 animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+            </div>
           </motion.div>
         </div>
       </ProtectedRoute>
@@ -209,13 +217,13 @@ export default function NewJournalPage() {
 
   return (
     <ProtectedRoute>
-      <div className="journal-sanctuary min-h-screen bg-gradient-to-br from-whisper-green/5 to-blue-50/30">
+      <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-purple-50">
         <FeatureNavigation
           title="New Journal Entry"
           description="Express your thoughts and feelings in a safe space"
         />
 
-        <div className="container mx-auto px-4 py-8 max-w-4xl">
+        <div className="container mx-auto px-4 py-8 max-w-5xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -225,18 +233,26 @@ export default function NewJournalPage() {
             <Button
               variant="ghost"
               onClick={() => router.back()}
-              className="mb-6 text-gray-600 hover:text-whisper-green"
+              className="mb-8 text-gray-600 hover:text-blue-600 bg-white/60 backdrop-blur-sm rounded-2xl px-6 py-3 shadow-md font-medium"
             >
-              <ArrowLeft className="w-4 h-4 mr-2" />
+              <ArrowLeft className="w-5 h-5 mr-3" />
               Back to Journal
             </Button>
 
-            <Card className="shadow-xl border-0 bg-white/80 backdrop-blur-sm">
-              <CardHeader className="border-b border-gray-100">
-                <CardTitle className="flex items-center text-2xl font-bold text-gray-900">
-                  <BookOpen className="w-6 h-6 mr-3 text-whisper-green" />
-                  Create New Entry
-                </CardTitle>
+            <Card className="border-0 shadow-2xl bg-white/80 backdrop-blur-sm overflow-hidden">
+              <div className="h-2 bg-gradient-to-r from-green-400 via-blue-400 to-purple-400"></div>
+              <CardHeader className="bg-gradient-to-br from-green-50/50 via-blue-50/50 to-purple-50/50 border-b border-white/40 p-8">
+                <div className="flex items-center space-x-4">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center shadow-lg">
+                    <BookOpen className="w-8 h-8 text-white" />
+                  </div>
+                  <div>
+                    <CardTitle className="text-3xl font-bold text-gray-900">
+                      Create New Entry
+                    </CardTitle>
+                    <p className="text-gray-600 text-lg">Share your thoughts in a safe, private space</p>
+                  </div>
+                </div>
               </CardHeader>
 
               <CardContent className="p-8 space-y-6">
@@ -357,28 +373,41 @@ export default function NewJournalPage() {
                 </div>
 
                 {/* Save Button */}
-                <div className="flex justify-end pt-6 border-t border-gray-100">
+                <div className="flex justify-center pt-8">
+                  <div className="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent w-full mb-8"></div>
+                </div>
+                
+                <div className="flex justify-center">
                   <Button
                     onClick={handleSave}
                     disabled={saving}
-                    className="bg-whisper-green hover:bg-whisper-green/90 text-white px-8 py-3 text-lg font-medium"
+                    size="lg"
+                    className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white px-12 py-4 text-xl font-bold rounded-2xl shadow-lg disabled:opacity-50"
                   >
                     {saving ? (
                       <>
-                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                        Saving...
+                        <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white mr-3"></div>
+                        Saving Your Thoughts...
                       </>
                     ) : (
                       <>
-                        <Save className="w-5 h-5 mr-2" />
+                        <Save className="w-6 h-6 mr-3" />
                         Save Entry
                       </>
                     )}
                   </Button>
                 </div>
 
-                <div className="text-center text-sm text-gray-500 bg-gray-50 p-4 rounded-lg">
-                  💡 <strong>Tip:</strong> After saving, you'll be able to get AI insights about your emotional patterns and receive supportive guidance.
+                <div className="bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 border border-white/40 rounded-2xl p-6 shadow-lg mt-8">
+                  <div className="flex items-center space-x-3 mb-3">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-400 to-purple-500 flex items-center justify-center">
+                      <Sparkles className="w-5 h-5 text-white" />
+                    </div>
+                    <h4 className="text-lg font-bold text-gray-900">What happens next?</h4>
+                  </div>
+                  <p className="text-gray-600 leading-relaxed">
+                    After saving, you'll be able to get AI insights about your emotional patterns and receive supportive guidance tailored to your journal entry. Your thoughts are private, secure, and ready to help you on your healing journey.
+                  </p>
                 </div>
               </CardContent>
             </Card>
