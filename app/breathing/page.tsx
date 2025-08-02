@@ -28,19 +28,20 @@ export default function BreathingPage() {
 
   return (
     <ProtectedRoute>
-      <div className="journal-sanctuary min-h-screen">
+      <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-purple-50">
         <FeatureNavigation
           title="Breathing Exercise"
           description="Guided 4-7-8 breathing technique for relaxation and anxiety relief"
         />
 
-        <div className="container mx-auto px-4 py-8 max-w-4xl">
+        <div className="container mx-auto px-4 py-8 max-w-5xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
           >
-            <Card className="bg-card/50 backdrop-blur-sm border-whisper-green-200/30">
+            <Card className="border-0 shadow-xl bg-white/80 backdrop-blur-sm overflow-hidden">
+              <div className="h-2 bg-gradient-to-r from-green-400 via-blue-400 to-purple-400"></div>
               <CardContent className="p-0">
                 <BreathingExercise />
               </CardContent>
