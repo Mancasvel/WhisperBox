@@ -31,8 +31,8 @@ const SimpleMDE = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="w-full min-h-[400px] p-8 bg-card/50 backdrop-blur-sm border border-border rounded-2xl flex items-center justify-center">
-        <div className="text-muted-foreground">Loading editor...</div>
+      <div className="w-full min-h-[400px] p-8 bg-white/60 backdrop-blur-sm border border-gray-200 rounded-2xl flex items-center justify-center shadow-sm">
+        <div className="text-gray-600">Loading editor...</div>
       </div>
     ),
   }
@@ -233,7 +233,7 @@ export default function NewJournalPage() {
             <Button
               variant="ghost"
               onClick={() => router.back()}
-              className="mb-8 text-gray-600 hover:text-blue-600 bg-white/60 backdrop-blur-sm rounded-2xl px-6 py-3 shadow-md font-medium"
+              className="mb-8 text-gray-700 hover:text-blue-600 bg-white/60 backdrop-blur-sm rounded-2xl px-6 py-3 shadow-md font-medium"
             >
               <ArrowLeft className="w-5 h-5 mr-3" />
               Back to Journal
@@ -266,7 +266,7 @@ export default function NewJournalPage() {
                       id="journalType"
                       value={entry.journalType} 
                       onChange={(e) => setEntry(prev => ({ ...prev, journalType: e.target.value }))}
-                      className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-whisper-green/20 focus:border-whisper-green outline-none bg-white text-gray-900"
+                      className="w-full bg-white/60 backdrop-blur-sm border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-blue-300 focus:border-blue-400 outline-none text-gray-900 placeholder-gray-500 shadow-sm px-5 py-3"
                     >
                       {journalTypes.map((type) => (
                         <option key={type.value} value={type.value}>
@@ -284,7 +284,7 @@ export default function NewJournalPage() {
                       id="mood"
                       value={entry.mood} 
                       onChange={(e) => setEntry(prev => ({ ...prev, mood: e.target.value }))}
-                      className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-whisper-green/20 focus:border-whisper-green outline-none bg-white text-gray-900"
+                      className="w-full bg-white/60 backdrop-blur-sm border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-blue-300 focus:border-blue-400 outline-none text-gray-900 placeholder-gray-500 shadow-sm px-5 py-3"
                     >
                       <option value="">How are you feeling?</option>
                       {moodOptions.map((mood) => (
@@ -306,7 +306,7 @@ export default function NewJournalPage() {
                     value={entry.title}
                     onChange={(e) => setEntry(prev => ({ ...prev, title: e.target.value }))}
                     placeholder="Give your entry a meaningful title..."
-                    className="text-lg"
+                    className="bg-white/60 backdrop-blur-sm border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-blue-300 focus:border-blue-400 outline-none text-gray-900 placeholder-gray-500 shadow-sm px-5 py-3 text-lg"
                   />
                 </div>
 
@@ -321,7 +321,7 @@ export default function NewJournalPage() {
                       onChange={(e) => setTagInput(e.target.value)}
                       onKeyPress={handleKeyPress}
                       placeholder="Add tags to organize your thoughts..."
-                      className="flex-1"
+                      className="flex-1 bg-white/60 backdrop-blur-sm border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-blue-300 focus:border-blue-400 outline-none text-gray-900 placeholder-gray-500 shadow-sm px-5 py-3"
                     />
                     <Button onClick={addTag} variant="outline" size="sm" className="hover:text-gray-700">
                       <Tag className="w-4 h-4 mr-2" />
@@ -349,7 +349,7 @@ export default function NewJournalPage() {
                   <label className="text-sm font-medium text-gray-700">
                     Your Thoughts & Feelings
                   </label>
-                  <div className="prose-editor">
+                  <div className="bg-white/60 backdrop-blur-sm border border-gray-200 rounded-2xl p-4 shadow-sm">
                     <SimpleMDE
                       ref={editorRef}
                       onChange={handleContentChange}
