@@ -11,7 +11,13 @@ const JournalList = dynamic(() => import('@/components/JournalList'), {
   ssr: false,
   loading: () => (
     <div className="w-full min-h-[400px] flex items-center justify-center">
-      <div className="text-muted-foreground animate-pulse">Loading your journal...</div>
+      <div className="text-center bg-white/80 backdrop-blur-sm border border-white/40 rounded-3xl p-12 shadow-xl">
+        <div className="w-16 h-16 rounded-full bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center mx-auto mb-6 animate-pulse">
+          <div className="w-8 h-8 bg-white/30 rounded-full"></div>
+        </div>
+        <div className="text-2xl font-bold text-gray-900 mb-2">Loading your journal...</div>
+        <div className="text-gray-600">Retrieving your thoughts and reflections</div>
+      </div>
     </div>
   ),
 })
@@ -24,7 +30,7 @@ export default function JournalPage() {
 
   return (
     <ProtectedRoute>
-      <div className="journal-sanctuary min-h-screen bg-gradient-to-br from-whisper-green/5 to-blue-50/30">
+      <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-purple-50">
         <FeatureNavigation
           title="Your Sacred Journal"
           description="A private space for emotional expression and healing"
