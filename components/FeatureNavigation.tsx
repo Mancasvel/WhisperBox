@@ -36,7 +36,7 @@ const navigationItems = [
 export default function FeatureNavigation({ 
   title, 
   description, 
-  showBackButton = true 
+  showBackButton = false 
 }: FeatureNavigationProps) {
   const router = useRouter()
   const pathname = usePathname()
