@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/lib/AuthContext'
@@ -18,7 +18,11 @@ import {
   Sparkles, 
   Leaf,
   ArrowRight,
-  Loader2
+  Loader2,
+  Zap,
+  Stars,
+  Cpu,
+  Globe
 } from 'lucide-react'
 
 export default function HomePage() {
@@ -40,23 +44,26 @@ export default function HomePage() {
   // Show loading while checking auth
   if (loading) {
     return (
-      <div className="journal-sanctuary min-h-screen flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 flex items-center justify-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.3 }}
-          className="text-center"
+          className="text-center bg-white/80 backdrop-blur-sm border border-white/40 rounded-3xl p-12 shadow-xl"
         >
-          <div className="relative mb-4">
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-            >
-              <Loader2 className="w-8 h-8 text-emotional-calm-500 mx-auto" />
-            </motion.div>
+          <div className="relative mb-6">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center shadow-lg mx-auto mb-4">
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              >
+                <Loader2 className="w-8 h-8 text-white" />
+              </motion.div>
+            </div>
           </div>
-          <p className="text-muted-foreground font-ui">
-            Loading WhisperBox...
+          <h3 className="text-xl font-bold text-gray-900 mb-2">Loading WhisperBox...</h3>
+          <p className="text-gray-600">
+            Preparing your wellness journey
           </p>
         </motion.div>
       </div>
@@ -85,233 +92,359 @@ export default function HomePage() {
   const features = [
     {
       icon: <Edit3 className="w-8 h-8" />,
-      title: 'Emotional Journaling',
-      description: 'Express your thoughts freely in a safe, private space with AI insights',
-      gradient: 'from-whisper-green-500 to-whisper-green-600'
+      title: 'AI-Enhanced Journaling',
+      description: 'Express your thoughts in a secure space with intelligent emotional analysis and personalized insights',
+      gradient: 'from-green-500 to-blue-500'
     },
     {
       icon: <Wind className="w-8 h-8" />,
-      title: 'Breathing Exercises',
-      description: 'Guided breathing techniques to reduce anxiety and promote calm',
-      gradient: 'from-whisper-orange-500 to-whisper-green-500'
+      title: 'Interactive Wellness',
+      description: 'Immersive breathing exercises with beautiful animations to reduce anxiety and promote calm',
+      gradient: 'from-blue-500 to-purple-500'
     },
     {
       icon: <Brain className="w-8 h-8" />,
-      title: 'Grounding Exercises',
-      description: '5-4-3-2-1 technique to help you feel present and centered',
-      gradient: 'from-whisper-green-600 to-whisper-orange-500'
+      title: 'Smart Grounding',
+      description: 'Adaptive 5-4-3-2-1 sensory technique with guided interactions for presence and centering',
+      gradient: 'from-purple-500 to-indigo-500'
     },
     {
       icon: <LifeBuoy className="w-8 h-8" />,
-      title: 'Crisis Support',
-      description: 'Immediate access to mental health resources and support lines',
-      gradient: 'from-red-500 to-orange-500'
+      title: 'Instant Crisis Support',
+      description: 'Immediate access to curated mental health resources with 24/7 professional support lines',
+      gradient: 'from-orange-500 to-red-500'
     }
   ]
 
   const benefits = [
     {
-      icon: <Shield className="w-8 h-8 text-whisper-green-600" />,
-      title: 'Private & Secure',
-      description: 'Your data is encrypted and stays private. Only you can access your entries.'
+      icon: <Shield className="w-8 h-8" />,
+      title: 'Military-Grade Security',
+      description: 'End-to-end encryption with zero-knowledge architecture. Your thoughts remain completely private.',
+      gradient: 'from-green-400 to-emerald-500'
     },
     {
-      icon: <Sparkles className="w-8 h-8 text-whisper-orange-600" />,
-      title: 'AI-Powered Insights',
-      description: 'Compassionate AI provides emotional analysis and personalized wellness suggestions.'
+      icon: <Cpu className="w-8 h-8" />,
+      title: 'Advanced AI Intelligence',
+      description: 'Trauma-informed AI companion trained in therapeutic principles for compassionate support.',
+      gradient: 'from-blue-400 to-indigo-500'
     },
     {
-      icon: <Leaf className="w-8 h-8 text-whisper-green-600" />,
-      title: 'Evidence-Based',
-      description: 'Techniques grounded in psychology and mental health best practices.'
+      icon: <Stars className="w-8 h-8" />,
+      title: 'Evidence-Based Design',
+      description: 'Techniques rooted in CBT, DBT, and mindfulness practices validated by mental health professionals.',
+      gradient: 'from-purple-400 to-pink-500'
+    },
+    {
+      icon: <Globe className="w-8 h-8" />,
+      title: 'Always Accessible',
+      description: 'Progressive web app works offline, installs on any device, and provides 24/7 support.',
+      gradient: 'from-amber-400 to-orange-500'
     }
   ]
 
   return (
-    <div className="journal-sanctuary min-h-screen">
-      <div className="container mx-auto px-4 py-8 max-w-6xl">
-        {/* Header */}
-        <motion.header 
-          className="text-center mb-12"
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-purple-50">
+      <div className="container mx-auto px-4 py-12 max-w-7xl">
+        {/* Modern Hero Section */}
+        <motion.section 
+          className="text-center mb-20"
           variants={fadeIn}
           initial="initial"
           animate="animate"
         >
-          <div className="flex items-center justify-center gap-4 mb-6">
+          {/* Floating Elements */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
             <motion.div
-              whileHover={{ rotate: 5, scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300, damping: 10 }}
-            >
-              <Logo 
-                size="xl" 
-                showText={true}
-                textClassName="text-5xl font-journal font-bold bg-gradient-to-r from-whisper-green-600 to-whisper-green-700 bg-clip-text text-transparent mb-2"
-                className="items-center"
-              />
-            </motion.div>
-            <div className="flex flex-col items-center">
-              <Badge variant="outline" className="emotion-badge healing mt-2">
-                <Heart className="w-3 h-3 mr-1" />
-                Mental Wellness Companion
-              </Badge>
-            </div>
+              animate={{ 
+                y: [0, -20, 0],
+                rotate: [0, 5, 0]
+              }}
+              transition={{ 
+                duration: 6, 
+                repeat: Infinity, 
+                ease: "easeInOut" 
+              }}
+              className="absolute top-20 left-1/4 w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full opacity-60"
+            />
+            <motion.div
+              animate={{ 
+                y: [0, 15, 0],
+                x: [0, 10, 0]
+              }}
+              transition={{ 
+                duration: 8, 
+                repeat: Infinity, 
+                ease: "easeInOut",
+                delay: 2
+              }}
+              className="absolute top-32 right-1/3 w-3 h-3 bg-gradient-to-r from-green-400 to-blue-400 rounded-full opacity-40"
+            />
           </div>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto font-ui leading-relaxed">
-            Your private mental health companion. A secure space for emotional journaling with AI-powered insights and compassionate support.
-          </p>
-        </motion.header>
+
+          {/* Hero Content */}
+          <div className="relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="mb-8"
+            >
+              
+              
+              <Badge className="bg-gradient-to-r from-green-100 to-blue-100 text-green-800 border-green-200 text-sm px-4 py-2 rounded-full mb-6 shadow-sm">
+                <Zap className="w-4 h-4 mr-2" />
+                Katy Youth Hacks 2025 • AI-Powered Mental Wellness
+              </Badge>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              <h1 className="text-6xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                Where{' '}
+                <span className="bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  Technology
+                </span>
+                <br />
+                Meets{' '}
+                <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 bg-clip-text text-transparent">
+                  Compassion
+                </span>
+              </h1>
+              
+              <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-10">
+                Experience the future of mental wellness with WhisperBox – an AI-enhanced platform that combines 
+                cutting-edge technology with evidence-based therapeutic approaches to create your personal sanctuary for healing.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+                <Button
+                  onClick={() => router.push('/auth/login')}
+                  size="lg"
+                  className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white px-10 py-4 rounded-2xl text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300"
+                >
+                  <Heart className="w-6 h-6 mr-3" />
+                  Start Your Journey
+                  <ArrowRight className="w-6 h-6 ml-3" />
+                </Button>
+                <Button
+                  onClick={() => router.push('/auth/login')}
+                  variant="outline"
+                  size="lg"
+                  className="border-2 border-gray-300 hover:bg-gray-50 hover:text-gray-700 px-10 py-4 rounded-2xl text-lg font-semibold"
+                >
+                  Sign In
+                </Button>
+              </div>
+
+              <div className="flex items-center justify-center gap-8 text-sm text-gray-500">
+                <div className="flex items-center gap-2">
+                  <Shield className="w-4 h-4" />
+                  End-to-End Encrypted
+                </div>
+                <div className="flex items-center gap-2">
+                  <Sparkles className="w-4 h-4" />
+                  AI-Powered Insights
+                </div>
+                <div className="flex items-center gap-2">
+                  <Heart className="w-4 h-4" />
+                  Trauma-Informed Care
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </motion.section>
 
         <motion.div
           variants={staggerContainer}
           initial="initial"
           animate="animate"
-          className="space-y-12"
+          className="space-y-20"
         >
-          {/* Quick Start Section */}
-          <motion.div 
+          {/* Features Section */}
+          <motion.section 
             variants={fadeIn}
             className="relative"
           >
-            <Card className="bg-gradient-to-br from-whisper-green-500/10 to-whisper-green-600/10 border-whisper-green-200/30">
-              <CardHeader className="text-center pb-6">
-                <div className="flex items-center justify-center mb-4">
-                  <motion.div
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                  >
-                    <Sparkles className="w-8 h-8 text-whisper-green-500" />
-                  </motion.div>
-                </div>
-                <CardTitle className="text-3xl font-journal mb-4">Ready to Begin Your Wellness Journey?</CardTitle>
-                <CardDescription className="text-lg font-ui text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                  Join thousands who have found peace and healing through our compassionate AI-powered mental health platform.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="text-center space-y-4">
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button
-                    onClick={() => router.push('/auth/login')}
-                    size="lg"
-                    className="bg-gradient-to-r from-whisper-green-500 to-whisper-green-600 hover:from-whisper-green-600 hover:to-whisper-green-700 text-white font-ui shadow-xl"
-                  >
-                    <Heart className="w-5 h-5 mr-2" />
-                    Get Started Free
-                    <ArrowRight className="w-5 h-5 ml-2" />
-                  </Button>
-                  <Button
-                    onClick={() => router.push('/auth/login')}
-                    variant="outline"
-                    size="lg"
-                    className="font-ui border-whisper-green-300 hover:bg-whisper-green-50"
-                  >
-                    Sign In
-                  </Button>
-                </div>
-                <p className="text-sm text-muted-foreground font-ui">
-                  No payment required • Secure magic link authentication • Start writing immediately
-                </p>
-              </CardContent>
-            </Card>
-          </motion.div>
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                Innovative Features for{' '}
+                <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+                  Mental Wellness
+                </span>
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Discover cutting-edge tools designed to support your emotional journey with compassion and intelligence
+              </p>
+            </div>
 
-          {/* Feature Cards */}
-          <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 gap-6"
-            variants={staggerContainer}
-          >
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                variants={fadeIn}
-                whileHover={{ y: -4, scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              >
-                <Card className="h-full border-border/50 hover:border-whisper-green-300/50 transition-all duration-300">
-                  <CardHeader className="pb-4">
-                    <div className="flex items-start space-x-4">
-                      <div className={`p-3 rounded-xl bg-gradient-to-br ${feature.gradient} text-white shadow-lg`}>
-                        {feature.icon}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {features.map((feature, index) => (
+                <motion.div
+                  key={index}
+                  variants={fadeIn}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <Card className="h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-500 bg-white/80 backdrop-blur-sm overflow-hidden group">
+                    <div className={`h-2 bg-gradient-to-r ${feature.gradient}`} />
+                    <CardHeader className="bg-gradient-to-br from-green-50/50 via-blue-50/50 to-purple-50/50 border-b border-white/40 p-8">
+                      <div className="flex items-start space-x-6">
+                        <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                          {React.cloneElement(feature.icon, { className: "w-8 h-8 text-white" })}
+                        </div>
+                        <div className="flex-1">
+                          <CardTitle className="text-2xl font-bold text-gray-900 mb-3">{feature.title}</CardTitle>
+                          <CardDescription className="text-gray-600 leading-relaxed text-lg">
+                            {feature.description}
+                          </CardDescription>
+                        </div>
                       </div>
-                      <div className="flex-1">
-                        <CardTitle className="text-xl font-journal mb-2">{feature.title}</CardTitle>
-                        <CardDescription className="font-ui text-muted-foreground leading-relaxed">
-                          {feature.description}
-                        </CardDescription>
-                      </div>
-                    </div>
-                  </CardHeader>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
+                    </CardHeader>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </motion.section>
 
           {/* Benefits Section */}
-          <motion.div 
+          <motion.section 
             variants={fadeIn}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6"
+            className="relative"
           >
-            {benefits.map((benefit, index) => (
-              <motion.div
-                key={index}
-                variants={fadeIn}
-                whileHover={{ y: -4 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              >
-                <Card className="text-center h-full border-border/50 hover:border-whisper-green-300/50 transition-all duration-300">
-                  <CardHeader>
-                    <div className="flex justify-center mb-4">
-                      <div className="p-4 rounded-full bg-gradient-to-br from-background to-muted">
-                        {benefit.icon}
-                      </div>
-                    </div>
-                    <CardTitle className="font-journal">{benefit.title}</CardTitle>
-                    <CardDescription className="font-ui leading-relaxed">
-                      {benefit.description}
-                    </CardDescription>
-                  </CardHeader>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                Why Choose{' '}
+                <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                  WhisperBox
+                </span>
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Built with advanced technology and compassionate design principles for the most effective mental health support
+              </p>
+            </div>
 
-          {/* Final CTA */}
-          <motion.div
-            variants={fadeIn}
-            className="text-center"
-          >
-            <Card className="bg-card/50 backdrop-blur-sm">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-journal font-semibold mb-4">
-                  Take the first step toward emotional wellbeing
-                </h3>
-                <p className="text-muted-foreground font-ui mb-6 max-w-2xl mx-auto">
-                  Your mental health journey starts with a single entry. Join our compassionate community and discover the healing power of guided emotional expression.
-                </p>
-                <Button
-                  onClick={() => router.push('/auth/login')}
-                  size="lg"
-                  className="bg-gradient-to-r from-whisper-green-500 to-whisper-green-600 hover:from-whisper-green-600 hover:to-whisper-green-700 text-white font-ui shadow-xl"
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {benefits.map((benefit, index) => (
+                <motion.div
+                  key={index}
+                  variants={fadeIn}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <Heart className="w-5 h-5 mr-2" />
-                  Start Your Healing Journey
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
+                  <Card className="text-center h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-white/80 backdrop-blur-sm overflow-hidden group">
+                    <div className={`h-1 bg-gradient-to-r ${benefit.gradient}`} />
+                    <CardHeader className="bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 p-8">
+                      <div className="flex justify-center mb-6">
+                        <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${benefit.gradient} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                          {React.cloneElement(benefit.icon, { className: "w-8 h-8 text-white" })}
+                        </div>
+                      </div>
+                      <CardTitle className="text-xl font-bold text-gray-900 mb-4">{benefit.title}</CardTitle>
+                      <CardDescription className="text-gray-600 leading-relaxed">
+                        {benefit.description}
+                      </CardDescription>
+                    </CardHeader>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </motion.section>
+
+          {/* Final CTA Section */}
+          <motion.section
+            variants={fadeIn}
+            className="relative"
+          >
+            <Card className="border-0 shadow-2xl bg-white/80 backdrop-blur-sm overflow-hidden">
+              <div className="h-2 bg-gradient-to-r from-green-400 via-blue-400 to-purple-400" />
+              <CardContent className="bg-gradient-to-br from-green-50/50 via-blue-50/50 to-purple-50/50 p-12 text-center">
+                <div className="max-w-4xl mx-auto">
+                  <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center shadow-xl mx-auto mb-8">
+                    <Heart className="w-10 h-10 text-white" />
+                  </div>
+                  
+                  <h3 className="text-4xl font-bold text-gray-900 mb-6">
+                    Ready to Transform Your{' '}
+                    <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+                      Mental Wellness Journey?
+                    </span>
+                  </h3>
+                  
+                  <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed">
+                    Join thousands who have discovered healing through our innovative AI-powered platform. 
+                    Your emotional wellbeing starts with a single entry. Begin your transformation today.
+                  </p>
+
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+                    <Button
+                      onClick={() => router.push('/auth/login')}
+                      size="lg"
+                      className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white px-12 py-4 text-xl font-bold rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300"
+                    >
+                      <Heart className="w-6 h-6 mr-3" />
+                      Start Your Healing Journey
+                      <ArrowRight className="w-6 h-6 ml-3" />
+                    </Button>
+                  </div>
+
+                  <div className="flex items-center justify-center gap-8 text-sm text-gray-500">
+                    <div className="flex items-center gap-2">
+                      <Shield className="w-4 h-4" />
+                      100% Free
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Sparkles className="w-4 h-4" />
+                      No Credit Card Required
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Heart className="w-4 h-4" />
+                      Start Immediately
+                    </div>
+                  </div>
+                </div>
               </CardContent>
             </Card>
-          </motion.div>
+          </motion.section>
         </motion.div>
 
-        {/* Footer */}
+        {/* Modern Footer */}
         <motion.footer 
           variants={fadeIn}
           initial="initial"
           animate="animate"
-          className="text-center mt-16 pb-8"
+          className="mt-20 pb-12"
         >
-          <div className="border-t border-border pt-8 space-y-6">
-            <p className="text-muted-foreground text-sm font-ui">
-              WhisperBox is a supportive tool and not a replacement for professional mental health care.
-            </p>
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-green-400/10 via-blue-400/10 to-purple-400/10 rounded-3xl" />
+            <Card className="relative border-0 shadow-lg bg-white/60 backdrop-blur-sm overflow-hidden">
+              <CardContent className="p-8 text-center">
+                <div className="flex items-center justify-center gap-4 mb-6">
+                  <Logo 
+                    size="md" 
+                    showText={true}
+                    textClassName="text-2xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent"
+                    className="items-center"
+                  />
+                </div>
+                
+                <p className="text-gray-600 mb-4 max-w-2xl mx-auto">
+                  WhisperBox is a supportive tool and not a replacement for professional mental health care. 
+                  If you're experiencing a mental health crisis, please contact emergency services or a mental health professional immediately.
+                </p>
+                
+                <div className="flex items-center justify-center gap-6 text-sm text-gray-500">
+                  <span>© 2025 WhisperBox</span>
+                  <span>•</span>
+                  <span>Created by Manuel Castillejo</span>
+                  <span>•</span>
+                  <span>Katy Youth Hacks 2025</span>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </motion.footer>
       </div>
