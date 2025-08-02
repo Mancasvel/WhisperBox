@@ -448,7 +448,7 @@ export const GroundingExercise: React.FC<{ onClose?: () => void }> = ({ onClose 
 
                     <div className="flex items-center justify-center space-x-3">
                       {completedSteps.includes(currentStep) ? (
-                        <Badge className="bg-emotional-healing-500">
+                        <Badge className="bg-gradient-to-r from-emotional-calm-500 to-emotional-healing-500 text-white hover:from-emotional-calm-600 hover:to-emotional-healing-600 hover:text-gray-800">
                           ✓ Completed
                         </Badge>
                       ) : (
@@ -478,7 +478,7 @@ export const GroundingExercise: React.FC<{ onClose?: () => void }> = ({ onClose 
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
               >
-                <Badge className="bg-emotional-healing-500 px-4 py-2">
+                <Badge className="bg-gradient-to-r from-emotional-calm-500 to-emotional-healing-500 text-white hover:from-emotional-calm-600 hover:to-emotional-healing-600 hover:text-gray-800">
                   🎉 Exercise Complete!
                 </Badge>
               </motion.div>
