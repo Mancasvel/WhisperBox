@@ -304,7 +304,7 @@ export const BreathingExercise: React.FC<{ onClose?: () => void }> = ({ onClose 
               onClick={pauseExercise}
               size="lg"
               variant="outline"
-              className="border-2 border-gray-300 hover:bg-gray-50 px-8 py-4 rounded-2xl font-semibold"
+              className="border-2 border-gray-300 hover:bg-gray-50 hover:text-gray-700 px-8 py-4 rounded-2xl font-semibold"
             >
               <Pause className="w-5 h-5 mr-3" />
               Pause
@@ -315,7 +315,7 @@ export const BreathingExercise: React.FC<{ onClose?: () => void }> = ({ onClose 
             onClick={resetExercise}
             size="lg"
             variant="outline"
-            className="border-2 border-gray-300 hover:bg-gray-50 px-8 py-4 rounded-2xl font-semibold"
+            className="border-2 border-gray-300 hover:bg-gray-50 hover:text-gray-700 px-8 py-4 rounded-2xl font-semibold"
           >
             <RotateCcw className="w-5 h-5 mr-3" />
             Reset
@@ -623,7 +623,7 @@ export const GroundingExercise: React.FC<{ onClose?: () => void }> = ({ onClose 
                 onClick={resetExercise} 
                 variant="outline"
                 size="lg"
-                className="border-2 border-gray-300 hover:bg-gray-50 px-8 py-4 rounded-2xl font-semibold"
+                className="border-2 border-gray-300 hover:bg-gray-50 hover:text-gray-700 px-8 py-4 rounded-2xl font-semibold"
               >
                 <RotateCcw className="w-5 h-5 mr-3" />
                 Start Over
