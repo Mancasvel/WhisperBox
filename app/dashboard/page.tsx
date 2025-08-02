@@ -173,15 +173,7 @@ export default function DashboardPage() {
                       <div className="flex-1">
                         <p className="text-sm text-gray-600 mb-2">{stat.label}</p>
                         <p className="text-3xl font-bold text-gray-900">{stat.value}</p>
-                        {stat.total && (
-                          <div className="mt-3">
-                            <Progress 
-                              value={aiChatsProgress} 
-                              className="h-2" 
-                            />
-                            <p className="text-xs text-gray-500 mt-1">of {stat.total} available</p>
-                          </div>
-                        )}
+ 
                       </div>
                       <div className={`w-12 h-12 rounded-2xl ${stat.bgColor} flex items-center justify-center shadow-md ml-4`}>
                         <div className={`${stat.color}`}>
