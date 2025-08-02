@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { Modal, ModalContent, ModalHeader, ModalBody } from '@heroui/react'
 import { LoginForm } from './LoginForm'
 import { RegisterForm } from './RegisterForm'
+import Logo from '@/components/ui/Logo'
 
 interface AuthModalProps {
   isOpen: boolean
@@ -74,11 +75,14 @@ export function AuthModal({ isOpen, onClose, defaultMode = 'login' }: AuthModalP
       <ModalContent className="flex flex-col max-h-[85vh]">
         <ModalHeader className="flex flex-col gap-1 flex-shrink-0">
           <div className="text-center">
-            <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                              WhisperBox
-            </h1>
-            <p className="text-xs sm:text-sm text-gray-500">
-                              Your private space for emotional journaling and wellness
+            <Logo 
+              size="md" 
+              showText={true}
+              textClassName="text-xl sm:text-2xl font-bold bg-gradient-to-r from-whisper-green-600 to-whisper-green-700 bg-clip-text text-transparent"
+              className="justify-center"
+            />
+            <p className="text-xs sm:text-sm text-gray-500 mt-2">
+              Your private space for emotional journaling and wellness
             </p>
           </div>
         </ModalHeader>

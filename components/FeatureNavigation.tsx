@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { useAuth } from '@/lib/AuthContext'
+import Logo from '@/components/ui/Logo'
 import { 
   ArrowLeft, 
   Home,
@@ -79,19 +80,15 @@ export default function FeatureNavigation({
             )}
             
             <motion.div 
-              className="flex items-center space-x-3 cursor-pointer"
-              onClick={handleGoHome}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <div className="w-10 h-10 bg-gradient-to-br from-whisper-green-500 to-whisper-green-600 rounded-xl flex items-center justify-center text-white text-lg font-bold shadow-lg">
-                W
-              </div>
-              <div>
-                <h1 className="text-xl font-journal font-semibold bg-gradient-to-r from-whisper-green-600 to-whisper-green-700 bg-clip-text text-transparent">
-                  WhisperBox
-                </h1>
-              </div>
+              <Logo 
+                size="lg" 
+                showText={true} 
+                onClick={handleGoHome}
+                textClassName="text-xl font-journal font-semibold"
+              />
             </motion.div>
           </div>
 

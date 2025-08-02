@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { useAuth } from '@/lib/AuthContext'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import Logo from '@/components/ui/Logo'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
@@ -66,20 +67,23 @@ export default function LoginPage() {
           {/* Header */}
           <div className="text-center mb-8">
             <Link href="/" className="inline-block">
-              <motion.h1
+              <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1.2, delay: 0.3 }}
-                className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-whisper-green-600 via-whisper-green-500 to-whisper-orange-500 bg-clip-text text-transparent cursor-pointer"
+                className="inline-flex flex-col items-center gap-4 cursor-pointer"
                 style={{
-                  textShadow: "0 0 20px rgba(34, 197, 94, 0.3), 0 0 40px rgba(34, 197, 94, 0.2)",
                   filter: "drop-shadow(0 0 8px rgba(34, 197, 94, 0.4))"
                 }}
               >
-                WhisperBox
-              </motion.h1>
+                <Logo 
+                  size="xl" 
+                  showText={true}
+                  textClassName="text-4xl md:text-6xl font-bold bg-gradient-to-r from-whisper-green-600 via-whisper-green-500 to-whisper-orange-500 bg-clip-text text-transparent"
+                />
+              </motion.div>
             </Link>
-            <p className="text-whisper-dark-600 text-lg font-journal">
+            <p className="text-whisper-dark-600 text-lg font-journal mt-4">
               Your safe space for emotional wellbeing
             </p>
           </div>

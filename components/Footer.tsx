@@ -1,6 +1,7 @@
 'use client'
 
 import { Divider } from '@heroui/react'
+import { LogoIcon } from '@/components/ui/Logo'
 
 export function Footer() {
   return (
@@ -10,9 +11,7 @@ export function Footer() {
           {/* Logo y descripción */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center">
-                <span className="text-white text-lg font-bold">💌</span>
-              </div>
+              <LogoIcon size="lg" />
               <span className="text-2xl font-bold text-white">WhisperBox</span>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed">

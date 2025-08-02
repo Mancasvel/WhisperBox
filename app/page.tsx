@@ -7,6 +7,7 @@ import { useAuth } from '@/lib/AuthContext'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import Logo from '@/components/ui/Logo'
 import { 
   Heart, 
   Edit3, 
@@ -137,18 +138,19 @@ export default function HomePage() {
           animate="animate"
         >
           <div className="flex items-center justify-center gap-4 mb-6">
-            <motion.div 
-              className="w-16 h-16 bg-gradient-to-br from-whisper-green-500 to-whisper-green-600 rounded-2xl flex items-center justify-center text-white text-3xl font-bold shadow-xl"
+            <motion.div
               whileHover={{ rotate: 5, scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300, damping: 10 }}
             >
-              W
+              <Logo 
+                size="xl" 
+                showText={true}
+                textClassName="text-5xl font-journal font-bold bg-gradient-to-r from-whisper-green-600 to-whisper-green-700 bg-clip-text text-transparent mb-2"
+                className="items-center"
+              />
             </motion.div>
-            <div>
-              <h1 className="text-5xl font-journal font-bold bg-gradient-to-r from-whisper-green-600 to-whisper-green-700 bg-clip-text text-transparent mb-2">
-                WhisperBox
-              </h1>
-              <Badge variant="outline" className="emotion-badge healing">
+            <div className="flex flex-col items-center">
+              <Badge variant="outline" className="emotion-badge healing mt-2">
                 <Heart className="w-3 h-3 mr-1" />
                 Mental Wellness Companion
               </Badge>
