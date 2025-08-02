@@ -60,7 +60,7 @@ export default function FeatureNavigation({
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50"
+      className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-white/40 shadow-sm"
     >
       <div className="container mx-auto px-4 py-4">
         {/* Top Bar */}
@@ -72,7 +72,7 @@ export default function FeatureNavigation({
                 variant="ghost"
                 size="sm"
                 onClick={handleBack}
-                className="font-ui"
+                className="bg-white/60 backdrop-blur-sm rounded-2xl px-4 py-2 shadow-md hover:bg-white/80 font-medium"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 Back
@@ -93,13 +93,14 @@ export default function FeatureNavigation({
           </div>
 
           {/* Right: User Info + Logout */}
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-4">
             {user && (
-              <div className="flex items-center space-x-3">
-                <div className="hidden sm:block text-right">
-                  <p className="text-sm font-medium font-ui">{user.name || user.email}</p>
-                  <div className="flex items-center space-x-2">
-                    <Badge variant="outline" className="text-xs">
+              <div className="flex items-center space-x-4">
+                <div className="hidden sm:block text-right bg-white/60 backdrop-blur-sm rounded-2xl px-4 py-2 shadow-md">
+                  <p className="text-sm font-bold text-gray-900">{user.name || user.email}</p>
+                  <div className="flex items-center justify-end mt-1">
+                    <Badge className="bg-gradient-to-r from-purple-100 to-indigo-100 text-purple-800 border-purple-200 text-xs">
+                      <User className="w-3 h-3 mr-1" />
                       {user.aiChatsUsed || 0}/{user.aiChatsLimit || 10} AI chats
                     </Badge>
                   </div>
@@ -108,7 +109,7 @@ export default function FeatureNavigation({
                   variant="ghost"
                   size="sm"
                   onClick={handleLogout}
-                  className="font-ui"
+                  className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white rounded-2xl px-4 py-2 shadow-md font-medium"
                 >
                   <LogOut className="w-4 h-4 mr-2" />
                   <span className="hidden sm:inline">Logout</span>
@@ -119,16 +120,22 @@ export default function FeatureNavigation({
         </div>
 
         {/* Title Section */}
-        <div className="text-center mb-4">
-          <h2 className="text-2xl font-journal font-semibold mb-2">{title}</h2>
-          <p className="text-muted-foreground font-ui">{description}</p>
+        <div className="text-center mb-6">
+          <div className="flex items-center justify-center space-x-3 mb-3">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center shadow-lg">
+              <Heart className="w-5 h-5 text-white" />
+            </div>
+            <h2 className="text-3xl font-bold text-gray-900">{title}</h2>
+          </div>
+          <p className="text-gray-600 text-lg">{description}</p>
         </div>
 
         {/* Navigation Tabs */}
-        <Card className="bg-card/50 backdrop-blur-sm">
-          <CardContent className="p-3">
+        <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm overflow-hidden">
+          <div className="h-1 bg-gradient-to-r from-green-400 via-blue-400 to-purple-400"></div>
+          <CardContent className="p-4">
             <nav className="flex items-center justify-center">
-              <div className="flex items-center space-x-1 bg-muted/30 rounded-xl p-1">
+              <div className="flex items-center space-x-2 bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 rounded-2xl p-2 border border-white/40 shadow-inner">
                 {navigationItems.map((item) => {
                   const Icon = item.icon
                   const isActive = pathname === item.path
@@ -137,16 +144,16 @@ export default function FeatureNavigation({
                     <motion.button
                       key={item.path}
                       onClick={() => router.push(item.path)}
-                      className={`flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                      className={`flex items-center space-x-2 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-200 ${
                         isActive
-                          ? 'bg-gradient-to-r from-whisper-green-500 to-whisper-green-600 text-white shadow-md'
-                          : 'text-muted-foreground hover:text-foreground hover:bg-background/50'
+                          ? 'bg-gradient-to-r from-green-500 to-blue-500 text-white shadow-lg'
+                          : 'text-gray-600 hover:text-gray-900 hover:bg-white/60 hover:shadow-md'
                       }`}
                       whileHover={{ scale: isActive ? 1 : 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
                       <Icon className="w-4 h-4" />
-                      <span className="hidden sm:inline font-ui">{item.label}</span>
+                      <span className="hidden sm:inline">{item.label}</span>
                     </motion.button>
                   )
                 })}
