@@ -323,7 +323,7 @@ export default function NewJournalPage() {
                       placeholder="Add tags to organize your thoughts..."
                       className="flex-1"
                     />
-                    <Button onClick={addTag} variant="outline" size="sm">
+                    <Button onClick={addTag} variant="outline" size="sm" className="hover:text-gray-700">
                       <Tag className="w-4 h-4 mr-2" />
                       Add
                     </Button>
