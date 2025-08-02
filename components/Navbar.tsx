@@ -15,7 +15,7 @@ export default function Navbar() {
     <motion.nav 
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="bg-white/80 backdrop-blur-md border-b border-gray-100 sticky top-0 z-40"
+      className="bg-white/90 backdrop-blur-md border-b border-white/40 sticky top-0 z-40 shadow-sm"
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
@@ -54,24 +54,37 @@ export default function Navbar() {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
-                        className="absolute top-full right-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 p-4 z-50"
+                        className="absolute top-full right-0 mt-2 w-72 bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-white/40 p-6 z-50"
                       >
-                        <h3 className="font-semibold text-gray-800 mb-3">Crisis Resources</h3>
-                        <div className="space-y-2 text-sm">
+                        <div className="flex items-center space-x-3 mb-4">
+                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center">
+                            <span className="text-white text-sm">🆘</span>
+                          </div>
+                          <h3 className="font-bold text-gray-900">Crisis Resources</h3>
+                        </div>
+                        <div className="space-y-3">
                           <a 
                             href="tel:988" 
-                            className="block text-red-600 hover:text-red-700 font-medium"
+                            className="flex items-center space-x-3 p-3 bg-gradient-to-r from-red-50 to-orange-50 rounded-xl hover:from-red-100 hover:to-orange-100 transition-colors"
                           >
-                            📞 988 - Crisis Lifeline
+                            <span className="text-xl">📞</span>
+                            <div>
+                              <div className="font-semibold text-red-700">988 - Crisis Lifeline</div>
+                              <div className="text-sm text-red-600">Call now for immediate help</div>
+                            </div>
                           </a>
                           <a 
                             href="sms:741741" 
-                            className="block text-blue-600 hover:text-blue-700 font-medium"
+                            className="flex items-center space-x-3 p-3 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl hover:from-blue-100 hover:to-indigo-100 transition-colors"
                           >
-                            💬 Text HOME to 741741
+                            <span className="text-xl">💬</span>
+                            <div>
+                              <div className="font-semibold text-blue-700">Text HOME to 741741</div>
+                              <div className="text-sm text-blue-600">Crisis text line</div>
+                            </div>
                           </a>
-                          <div className="pt-2 border-t border-gray-100">
-                            <p className="text-gray-600 text-xs">
+                          <div className="pt-3 border-t border-gray-200">
+                            <p className="text-gray-600 text-sm leading-relaxed">
                               If you're in immediate danger, call 911 or go to your nearest emergency room.
                             </p>
                           </div>
@@ -110,24 +123,37 @@ export default function Navbar() {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
-                        className="absolute top-full right-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 p-4 z-50"
+                        className="absolute top-full right-0 mt-2 w-72 bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-white/40 p-6 z-50"
                       >
-                        <h3 className="font-semibold text-gray-800 mb-3">Immediate Help</h3>
-                        <div className="space-y-2 text-sm">
+                        <div className="flex items-center space-x-3 mb-4">
+                          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center">
+                            <span className="text-white text-sm">🆘</span>
+                          </div>
+                          <h3 className="font-bold text-gray-900">Immediate Help</h3>
+                        </div>
+                        <div className="space-y-3">
                           <a 
                             href="tel:988" 
-                            className="block text-red-600 hover:text-red-700 font-medium"
+                            className="flex items-center space-x-3 p-3 bg-gradient-to-r from-red-50 to-orange-50 rounded-xl hover:from-red-100 hover:to-orange-100 transition-colors"
                           >
-                            📞 988 - Suicide & Crisis Lifeline
+                            <span className="text-xl">📞</span>
+                            <div>
+                              <div className="font-semibold text-red-700">988 - Suicide & Crisis Lifeline</div>
+                              <div className="text-sm text-red-600">24/7 crisis support</div>
+                            </div>
                           </a>
                           <a 
                             href="sms:741741" 
-                            className="block text-blue-600 hover:text-blue-700 font-medium"
+                            className="flex items-center space-x-3 p-3 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl hover:from-blue-100 hover:to-indigo-100 transition-colors"
                           >
-                            💬 Crisis Text Line: HOME to 741741
+                            <span className="text-xl">💬</span>
+                            <div>
+                              <div className="font-semibold text-blue-700">Crisis Text Line: HOME to 741741</div>
+                              <div className="text-sm text-blue-600">Text support available</div>
+                            </div>
                           </a>
-                          <div className="pt-2 border-t border-gray-100">
-                            <p className="text-gray-600 text-xs">
+                          <div className="pt-3 border-t border-gray-200">
+                            <p className="text-gray-600 text-sm leading-relaxed">
                               Free, confidential support 24/7. You're not alone.
                             </p>
                           </div>
@@ -145,7 +171,7 @@ export default function Navbar() {
                 </Link>
                 <Link 
                   href="/auth/login"
-                  className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl"
+                  className="bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white px-6 py-3 rounded-2xl transition-all shadow-lg hover:shadow-xl font-semibold"
                 >
                   Get Started
                 </Link>
@@ -265,7 +291,7 @@ export default function Navbar() {
                       </Link>
                       <Link 
                         href="/auth/login"
-                        className="block bg-gradient-to-r from-blue-500 to-purple-600 text-white px-3 py-2 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all text-center mx-3"
+                        className="block bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white px-3 py-3 rounded-2xl transition-all text-center mx-3 font-semibold shadow-lg"
                         onClick={() => setShowMobileMenu(false)}
                       >
                         Get Started
