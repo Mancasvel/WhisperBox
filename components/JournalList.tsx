@@ -179,7 +179,7 @@ export default function JournalList({ className = '' }: JournalListProps) {
         <select
           value={filterType}
           onChange={(e) => setFilterType(e.target.value)}
-          className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-whisper-green/20 focus:border-whisper-green outline-none bg-white"
+          className="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-whisper-green/20 focus:border-whisper-green outline-none bg-white text-gray-900"
         >
           <option value="all">All Types</option>
           <option value="daily">Daily</option>
