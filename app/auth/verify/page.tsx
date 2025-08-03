@@ -11,7 +11,7 @@ function VerifyContent() {
   const [message, setMessage] = useState('')
   const router = useRouter()
   const searchParams = useSearchParams()
-  const { user } = useAuth()
+  const { user, refreshAuth } = useAuth()
   
   useEffect(() => {
     const token = searchParams.get('token')
@@ -38,10 +38,13 @@ function VerifyContent() {
           setStatus('success')
           setMessage('Email verified successfully! Redirecting...')
           
-          // Wait a moment then redirect to home
+          // Refresh auth state to get the updated user info
+          await refreshAuth()
+          
+          // Wait a moment then redirect to dashboard
           setTimeout(() => {
-            router.push('/')
-          }, 2000)
+            router.push('/dashboard')
+          }, 1500)
         } else {
           setStatus('error')
           setMessage(data.message || 'Verification failed')
@@ -55,10 +58,10 @@ function VerifyContent() {
     verifyToken()
   }, [searchParams, router])
 
-  // If user is already logged in, redirect to home
+  // If user is already logged in, redirect to dashboard
   useEffect(() => {
     if (user && status === 'success') {
-      router.push('/')
+      router.push('/dashboard')
     }
   }, [user, status, router])
 

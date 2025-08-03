@@ -10,6 +10,7 @@ interface AuthContextType {
   logout: () => Promise<void>
   register: (email: string, password: string, name: string) => Promise<boolean>
   sendMagicLink: (email: string) => Promise<boolean>
+  refreshAuth: () => Promise<void>
   isAuthenticated: boolean
   userIdentity: string | null
   setUserIdentity: (identity: string) => void
@@ -22,25 +23,29 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true)
   const [userIdentity, setUserIdentity] = useState<string | null>(null)
 
-  useEffect(() => {
-    // Check if user is logged in
-    const checkAuth = async () => {
-      try {
-        const response = await fetch('/api/auth/me', {
-          credentials: 'include'
-        })
-        
-        if (response.ok) {
-          const userData = await response.json()
-          setUser(userData)
-        }
-      } catch (error) {
-        console.error('Auth check failed:', error)
-      } finally {
-        setLoading(false)
+  // Extract checkAuth as a reusable function
+  const checkAuth = async (setLoadingState = true) => {
+    if (setLoadingState) setLoading(true)
+    try {
+      const response = await fetch('/api/auth/me', {
+        credentials: 'include'
+      })
+      
+      if (response.ok) {
+        const userData = await response.json()
+        setUser(userData)
+      } else {
+        setUser(null)
       }
+    } catch (error) {
+      console.error('Auth check failed:', error)
+      setUser(null)
+    } finally {
+      if (setLoadingState) setLoading(false)
     }
+  }
 
+  useEffect(() => {
     // Load user identity from onboarding
     const identity = localStorage.getItem('unsent_user_identity')
     if (identity) {
@@ -138,6 +143,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.setItem('unsent_user_identity', identity)
   }
 
+  const refreshAuth = async () => {
+    await checkAuth(false) // Don't show loading spinner for refresh
+  }
+
   const value: AuthContextType = {
     user,
     loading,
@@ -145,6 +154,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     logout,
     register,
     sendMagicLink,
+    refreshAuth,
     isAuthenticated: !!user,
     userIdentity,
     setUserIdentity: updateUserIdentity
