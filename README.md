@@ -14,7 +14,7 @@
 [![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](https://mongodb.com/)
 [![AI Powered](https://img.shields.io/badge/AI_Powered-412991?style=for-the-badge&logo=openai&logoColor=white)](https://openrouter.ai/)
 
-**[🌟 Live Demo](http://localhost:3000) | [📹 Video Demo](#) | [📊 Presentation](#)**
+**[🌟 Live Demo](https://whisperbox.ksty.xyz) | [📹 Video Demo](https://www.youtube.com/watch?v=D62Oy_Yvh3k&ab_channel=MCV) | [📊 Presentation](#)**
 
 </div>
 
@@ -237,7 +237,7 @@ NEXT_PUBLIC_APP_URL=http://localhost:3000
 ```
 
 ### 🌐 **Access the App**
-Visit [http://localhost:3000](http://localhost:3000) and experience the future of mental health technology!
+Visit [https://whisperbox.ksty.xyz](https://whisperbox.ksty.xyz) and experience the future of mental health technology!
 
 ---
 
@@ -390,7 +390,8 @@ Developed entirely by Manuel for Katy Youth Hacks 2025, this project represents 
 ## 📞 **Get In Touch**
 
 ### 🌐 **Project Links**
-- **Live Demo**: [http://localhost:3000](http://localhost:3000)
+- **Live Demo**: [https://whisperbox.ksty.xyz](https://whisperbox.ksty.xyz)
+- **Video Demo**: [https://www.youtube.com/watch?v=D62Oy_Yvh3k&ab_channel=MCV](https://www.youtube.com/watch?v=D62Oy_Yvh3k&ab_channel=MCV)
 - **GitHub**: [https://github.com/yourusername/whisperbox](https://github.com/yourusername/whisperbox)
 - **Katy Youth Hacks**: [https://katyyouthhacks.com](https://katyyouthhacks.com)
 
@@ -428,7 +429,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Remember**: Your mental health matters. You are not alone. Help is always available.
 
-*[Crisis Resources](http://localhost:3000/crisis) | [Live Demo](http://localhost:3000)*
+*[Crisis Resources](https://whisperbox.ksty.xyz/crisis) | [Live Demo](https://whisperbox.ksty.xyz)*
 
 ---
 
